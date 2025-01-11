@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { AuthService } from '../auth.service'
 import { JwtService } from '@nestjs/jwt'
 import { UserService } from '../../user/user.service'
+import { ConfigService } from '@nestjs/config'
 
 describe('AuthService', () => {
   let service: AuthService
@@ -17,8 +18,15 @@ describe('AuthService', () => {
           },
         },
         {
+          provide: ConfigService,
+          useValue: {
+            get: jest.fn().mockReturnValue('mocked-token'),
+          },
+        },
+        {
           provide: UserService,
           useValue: {
+            getByID: jest.fn(),
             getByEmail: jest.fn(),
             createUser: jest.fn(),
           },
