@@ -48,7 +48,7 @@ model TimeBlock {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   name      String
-  color     String
+  color     String?
   duration  Int
   order     Int      @default(1)
   userID    String   @map("user_id")
