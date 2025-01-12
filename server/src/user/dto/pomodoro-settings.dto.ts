@@ -15,5 +15,5 @@ export class PomodoroSettingsDTO {
   @IsNumber()
   @Min(1)
   @Max(10)
-  inervalIsCount?: number
+  inervalsCount?: number
 }

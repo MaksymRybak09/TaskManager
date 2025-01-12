@@ -5,6 +5,7 @@ import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
 import { validationSchema } from './../config/config-service.config'
 import { TimeBlockModule } from 'src/time-block/time-block.module'
+import { PomodoroModule } from 'src/pomodoro/pomodoro.module'
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TimeBlockModule } from 'src/time-block/time-block.module'
     UserModule,
     TaskModule,
     TimeBlockModule,
+    PomodoroModule,
   ],
 })
 export class AppModule {}
