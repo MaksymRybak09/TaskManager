@@ -17,6 +17,7 @@ out/
 
 # Production
 build
+dist
 
 # Logs and Debug
 logs
