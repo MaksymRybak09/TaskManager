@@ -4,6 +4,7 @@ import { AuthModule } from 'src/auth/auth.module'
 import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
 import { validationSchema } from './../config/config-service.config'
+import { TimeBlockModule } from 'src/time-block/time-block.module'
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { validationSchema } from './../config/config-service.config'
     AuthModule,
     UserModule,
     TaskModule,
+    TimeBlockModule,
   ],
 })
 export class AppModule {}
