@@ -7,35 +7,35 @@ import {
 
 class AuthService {
   async main(type: 'login' | 'register', data: IAuthForm) {
-    const resmonse = await baseAxios.post<IAuthresponse>(`/auth/${type}`, data)
+    const response = await baseAxios.post<IAuthresponse>(`/auth/${type}`, data)
 
-    if (resmonse.data.token) {
-      saveTokenToStorage(resmonse.data.token)
+    if (response.data.token) {
+      saveTokenToStorage(response.data.token)
     }
 
-    return resmonse
+    return response
   }
 
   async getNewTokens() {
-    const resmonse = await baseAxios.get<IAuthresponse>(
+    const response = await baseAxios.get<IAuthresponse>(
       `/auth/log-in/access-token`,
     )
 
-    if (resmonse.data.token) {
-      saveTokenToStorage(resmonse.data.token)
+    if (response.data.token) {
+      saveTokenToStorage(response.data.token)
     }
 
-    return resmonse
+    return response
   }
 
   async logOut() {
-    const resmonse = await baseAxios.get<boolean>(`/auth/log-out`)
+    const response = await baseAxios.get<boolean>(`/auth/log-out`)
 
-    if (resmonse.data) {
+    if (response.data) {
       removeTokenFromStorage()
     }
 
-    return resmonse
+    return response
   }
 }
 
