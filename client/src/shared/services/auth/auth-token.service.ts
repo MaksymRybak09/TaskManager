@@ -8,7 +8,7 @@ export const getAccessToken = () => {
 
 export const saveTokenToStorage = (accessToken: string) => {
   Cookies.set(Tokens.ACCESS_TOKEN, accessToken, {
-    domain: process.env.CLIENT_HOST,
+    domain: process.env.NEXT_PUBLIC_CLIENT_HOST,
     sameSite: 'strict',
     expires: 1,
   })
