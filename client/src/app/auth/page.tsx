@@ -1,5 +1,5 @@
 import { RegisterLogInPage } from '@/pages/RegisterLogInPage'
-import { NO_INDEX_PAGE } from '@/shared/constants/colors.constants'
+import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants'
 import { Metadata } from 'next'
 
 export const metadate: Metadata = {
