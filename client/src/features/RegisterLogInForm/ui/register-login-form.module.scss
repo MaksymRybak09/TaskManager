@@ -1,0 +1,14 @@
+.form {
+  width: 300px;
+}
+
+.form__section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form__section-buttons {
+  display: flex;
+  gap: 4px;
+}
