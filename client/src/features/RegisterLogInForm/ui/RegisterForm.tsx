@@ -1,11 +1,15 @@
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import Heading from '@/shared/components/heading/Heading'
+import { authService } from '@/shared/services/auth/auth.service'
 import { useRegisterLogInForm } from '../hooks/use-register-login-form.hook'
 import styles from './register-login-form.module.scss'
 
-function RegisterLogInForm() {
-  const { register, errors, onSubmit, setIsLogInForm } = useRegisterLogInForm()
+function RegisterForm() {
+  const { register, errors, onSubmit } = useRegisterLogInForm(
+    authService.register,
+    'Successfuly registered!',
+  )
 
   return (
     <form onSubmit={onSubmit} className={styles.form}>
@@ -30,16 +34,9 @@ function RegisterLogInForm() {
           error={errors['password']}
         />
       </div>
-      <div className={styles['form__section-buttons']}>
-        <Button type="submit" onClick={() => setIsLogInForm(true)}>
-          Log In
-        </Button>
-        <Button type="submit" onClick={() => setIsLogInForm(false)}>
-          Register
-        </Button>
-      </div>
+      <Button type="submit">Register</Button>
     </form>
   )
 }
 
-export default RegisterLogInForm
+export default RegisterForm
