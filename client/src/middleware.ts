@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!refreshToken) {
-    return NextResponse.redirect(new URL('/auth', request.url))
+    return NextResponse.redirect(new URL('/register', request.url))
   }
 
   return NextResponse.next()
