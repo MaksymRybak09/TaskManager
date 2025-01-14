@@ -11,7 +11,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const isAuthPage = pathname.startsWith('/auth')
+  const isAuthPage =
+    pathname.startsWith('/log-in') || pathname.startsWith('/register')
 
   if (isAuthPage && refreshToken) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME, request.url))
