@@ -8,9 +8,10 @@ import {
 class AuthService {
   async register(data: IAuthForm) {
     const response = await baseAxios.post<IAuthresponse>(`/auth/register`, data)
+    console.log('Response' + response.data.accessToken)
 
-    if (response.data.token) {
-      saveTokenToStorage(response.data.token)
+    if (response.data.accessToken) {
+      saveTokenToStorage(response.data.accessToken)
     }
 
     return response
@@ -19,8 +20,8 @@ class AuthService {
   async logIn(data: IAuthForm) {
     const response = await baseAxios.post<IAuthresponse>(`/auth/log-in`, data)
 
-    if (response.data.token) {
-      saveTokenToStorage(response.data.token)
+    if (response.data.accessToken) {
+      saveTokenToStorage(response.data.accessToken)
     }
 
     return response
@@ -31,8 +32,8 @@ class AuthService {
       `/auth/log-in/access-token`,
     )
 
-    if (response.data.token) {
-      saveTokenToStorage(response.data.token)
+    if (response.data.accessToken) {
+      saveTokenToStorage(response.data.accessToken)
     }
 
     return response

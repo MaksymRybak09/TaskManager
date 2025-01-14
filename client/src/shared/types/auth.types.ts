@@ -6,6 +6,6 @@ export interface IAuthForm {
 }
 
 export interface IAuthresponse {
-  token: string
+  accessToken: string
   user: IUser
 }
