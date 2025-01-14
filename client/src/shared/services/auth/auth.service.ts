@@ -6,8 +6,18 @@ import {
 } from './auth-token.service'
 
 class AuthService {
-  async main(type: 'login' | 'register', data: IAuthForm) {
-    const response = await baseAxios.post<IAuthresponse>(`/auth/${type}`, data)
+  async register(data: IAuthForm) {
+    const response = await baseAxios.post<IAuthresponse>(`/auth/register`, data)
+
+    if (response.data.token) {
+      saveTokenToStorage(response.data.token)
+    }
+
+    return response
+  }
+
+  async logIn(data: IAuthForm) {
+    const response = await baseAxios.post<IAuthresponse>(`/auth/log-in`, data)
 
     if (response.data.token) {
       saveTokenToStorage(response.data.token)
