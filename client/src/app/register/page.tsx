@@ -1,4 +1,4 @@
-import { RegisterLogInPage } from '@/pages/RegisterLogInPage'
+import { RegisterPage } from '@/pages/RegisterPage'
 import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants'
 import { Metadata } from 'next'
 
@@ -8,5 +8,5 @@ export const metadate: Metadata = {
 }
 
 export default function AuthPage() {
-  return <RegisterLogInPage />
+  return <RegisterPage />
 }
