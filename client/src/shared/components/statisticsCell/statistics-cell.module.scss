@@ -1,0 +1,18 @@
+.cell {
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.cell__title {
+  font-size: 14px;
+}
+
+.cell__value {
+  font-size: 28px;
+}
