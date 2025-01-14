@@ -1,16 +1,14 @@
-import { ReactNode } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 import styles from './button.module.scss'
 
-type ButtonProps = {
-  type?: 'button' | 'submit' | 'reset'
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode
-  onClick: () => void
 }
 
-function Button(props: ButtonProps) {
+function Button({ children, ...props }: ButtonProps) {
   return (
-    <button className={styles.button} type={props.type ?? 'button'}>
-      {props.children}
+    <button className={styles.button} {...props}>
+      {children}
     </button>
   )
 }
