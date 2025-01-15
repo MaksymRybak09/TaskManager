@@ -1,0 +1,19 @@
+.block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.block__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #565656;
+}
+
+.block__user-name {
+  font-size: 22px;
+  color: #030303;
+}
