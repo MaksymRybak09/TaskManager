@@ -4,16 +4,16 @@ export class PomodoroSettingsDTO {
   @IsOptional()
   @IsNumber()
   @Min(1)
-  workInerval?: number
+  workInterval?: number
 
   @IsOptional()
   @IsNumber()
   @Min(1)
-  breakInerval?: number
+  breakInterval?: number
 
   @IsOptional()
   @IsNumber()
   @Min(1)
   @Max(10)
-  inervalsCount?: number
+  intervalsCount?: number
 }
