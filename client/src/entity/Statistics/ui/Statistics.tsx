@@ -1,5 +1,5 @@
 import StatisticsRow from '@/shared/components/statisticsRow/StatisticsRow'
-import { useProfile } from '@/shared/hooks/useProfile'
+import { useProfile } from '@/shared/hooks/use-profile.hook'
 
 export default function Statistics() {
   const { profile, isLoading } = useProfile()

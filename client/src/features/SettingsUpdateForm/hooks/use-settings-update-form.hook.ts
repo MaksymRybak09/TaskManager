@@ -1,4 +1,4 @@
-import { useProfile } from '@/shared/hooks/useProfile'
+import { useProfile } from '@/shared/hooks/use-profile.hook'
 import { userService } from '@/shared/services/user/user.service'
 import { TypeUserForm } from '@/shared/types/user.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'

@@ -1,5 +1,5 @@
 import ProfileImage from '@/shared/components/profileImage/ProfileImage'
-import { useProfile } from '@/shared/hooks/useProfile'
+import { useProfile } from '@/shared/hooks/use-profile.hook'
 import styles from './profile-block.module.scss'
 
 function ProfileBlock() {
