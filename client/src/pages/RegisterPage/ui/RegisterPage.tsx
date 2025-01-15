@@ -1,5 +1,5 @@
 import { RegisterForm } from '@/features/RegisterLogInForm'
-import FormLayout from '@/shared/layout/FormLayout'
+import FormLayout from '@/shared/layout/FormLayout/FormLayout'
 
 function RegisterPage() {
   return (
