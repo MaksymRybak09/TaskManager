@@ -1,7 +1,8 @@
 'use client'
-import { Statistics } from '@/entity/Statistics'
+
+import { HomePage } from '@/pages/HomePage'
 import './globals.scss'
 
 export default function Home() {
-  return <Statistics />
+  return <HomePage />
 }
