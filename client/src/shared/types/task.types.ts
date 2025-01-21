@@ -14,3 +14,8 @@ export interface ITask {
 }
 
 export type TaskFormState = Partial<Omit<ITask, 'id' | 'updatedAt'>>
+
+export type PriorityOption = {
+  label: string
+  value: string
+}
