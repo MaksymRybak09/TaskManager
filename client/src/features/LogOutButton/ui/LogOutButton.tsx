@@ -1,5 +1,5 @@
 import Button from '@/shared/components/button/Button'
-import { useLogOut } from '@/shared/hooks/use-log-out.hook'
+import { useLogOut } from '@/shared/hooks/users/use-log-out.hook'
 
 function LogOutButton() {
   const { mutate } = useLogOut()

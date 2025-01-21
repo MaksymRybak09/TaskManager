@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react'
 import { UseFormWatch } from 'react-hook-form'
 import { TaskFormState } from '../../types/task.types'
 import { useCreateTask } from './use-create-task'
-import { useUpdateTask } from '../use-update-task.hook'
+import { useUpdateTask } from './use-update-task.hook'
 
 interface IUseTaskdebounce {
   watch: UseFormWatch<TaskFormState>
