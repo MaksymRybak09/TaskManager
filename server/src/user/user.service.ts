@@ -54,7 +54,7 @@ export class UserService {
 
     const totalTasks = profile.tasks.length
     const completedTasks = await this.prisma.task.count({
-      where: { id, isCompleted: true },
+      where: { userID: id, isCompleted: true },
     })
 
     const todayStart = startOfDay(new Date())
