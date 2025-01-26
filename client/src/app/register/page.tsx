@@ -9,6 +9,6 @@ export const metadate: Metadata = {
   ...NO_INDEX_PAGE,
 }
 
-export default function AuthPage() {
+export default function Page() {
   return <RegisterPage />
 }
