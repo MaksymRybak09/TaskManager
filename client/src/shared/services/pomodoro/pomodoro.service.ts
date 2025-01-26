@@ -1,5 +1,8 @@
 import { authAxios } from '@/shared/api/interseptors'
-import { IPomodoroSession, PomodoroSessionState } from '@/shared/types/pomodoro.types'
+import {
+  IPomodoroSession,
+  PomodoroSessionState,
+} from '@/shared/types/pomodoro.types'
 
 class PomodoroService {
   private baseURL = 'timer'
@@ -12,9 +15,7 @@ class PomodoroService {
   }
 
   async createSession() {
-    const response = await authAxios.post<IPomodoroSession>(
-      this.baseURL,
-    )
+    const response = await authAxios.post<IPomodoroSession>(this.baseURL)
     return response.data
   }
 
@@ -29,7 +30,7 @@ class PomodoroService {
   }
 
   async updateRound(id: string, data: PomodoroSessionState) {
-    const response = await authAxios.put(`${this.baseURL}/rouund/${id}`, data)
+    const response = await authAxios.put(`${this.baseURL}/round/${id}`, data)
     return response.data
   }
 }
