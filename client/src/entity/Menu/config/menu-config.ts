@@ -9,7 +9,6 @@ type MenuConfig = {
 export const menuConfig: MenuConfig = [
   { key: 'home', label: 'Home', path: DASHBOARD_PAGES.HOME },
   { key: 'tasks', label: 'Tasks', path: DASHBOARD_PAGES.TASKS },
-  { key: 'habits', label: 'Habits', path: DASHBOARD_PAGES.HABITS },
   { key: 'timer', label: 'Timer', path: DASHBOARD_PAGES.TIMER },
   {
     key: 'time-block',
