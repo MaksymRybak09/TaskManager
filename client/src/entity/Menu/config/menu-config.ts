@@ -13,7 +13,7 @@ export const menuConfig: MenuConfig = [
   {
     key: 'time-block',
     label: 'Time block',
-    path: DASHBOARD_PAGES.TIME_BLOCKING,
+    path: DASHBOARD_PAGES.TIME_BLOCK,
   },
   { key: 'settings', label: 'Settings', path: DASHBOARD_PAGES.SETTINGS },
 ]
