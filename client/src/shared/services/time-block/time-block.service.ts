@@ -5,7 +5,7 @@ class TimeBlockService {
   private baseURL = 'time-blocks'
 
   async getTimeBlocks() {
-    const response = await authAxios.get<ITimeBlock>(this.baseURL)
+    const response = await authAxios.get<ITimeBlock[]>(this.baseURL)
     return response.data
   }
 
