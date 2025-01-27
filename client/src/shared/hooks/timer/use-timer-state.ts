@@ -16,7 +16,7 @@ export const useTimerState = () => {
     if (isRunning) {
       interval = setInterval(
         () => setSecondsLeft((secondsLeft) => secondsLeft - 1),
-        400,
+        1000,
       )
     } else if (!isRunning && secondsLeft !== 0 && interval) {
       clearInterval(interval)

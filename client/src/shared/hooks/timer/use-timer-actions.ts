@@ -20,7 +20,7 @@ export const useTimerActions = (params: ITimerActions) => {
 
   const pauseHandler = () => {
     params.setIsRunning(false)
-    console.log(Math.floor(params.secondsLeft / 60) >= workInterval)
+
     if (!activeRoundID) return
     updateRound({
       id: activeRoundID,
