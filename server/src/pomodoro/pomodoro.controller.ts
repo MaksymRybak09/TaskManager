@@ -10,11 +10,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { PomodoroRoundDTO, PomodoroSessionDTO } from './dto/pomodoro.dto'
 import { PomodoroService } from './pomodoro.service'
 
+@ApiTags('Timer')
 @Controller('timer')
 export class PomodoroController {
   constructor(private readonly pomodoroService: PomodoroService) {}
