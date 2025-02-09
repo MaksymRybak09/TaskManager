@@ -15,7 +15,9 @@ import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { TimeBlockDTO } from './dto/time-block.dto'
 import { UpdateOrderDTO } from './dto/update-order.dto'
 import { TimeBlockService } from './time-block.service'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Time blocks')
 @Controller('time-blocks')
 export class TimeBlockController {
   constructor(private readonly timeBlockService: TimeBlockService) {}
