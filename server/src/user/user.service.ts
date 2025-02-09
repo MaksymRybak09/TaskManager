@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common'
 import { hash } from 'argon2'
-import { startOfDay, subDays } from 'date-fns'
 import { AuthDTO } from 'src/auth/dto/auth.dto'
 import { PrismaService } from '../prima.service'
 import { UserDTO } from './dto/user.dto'
+import { StatisticsService } from './statistics.service'
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly statisticsService: StatisticsService,
+  ) {}
 
   async createUser(dto: AuthDTO) {
     const user = {
@@ -53,22 +56,12 @@ export class UserService {
   async getProfile(id: string) {
     const profile = await this.getByID(id)
 
-    const totalTasks = profile.tasks.length
-    const completedTasks = await this.prisma.task.count({
-      where: { userID: id, isCompleted: true },
-    })
+    const totalTasks = this.statisticsService.getTotalTasks(id)
+    const completedTasks = this.statisticsService.getCompletedTasks(id)
+    const todayTasks = this.statisticsService.getTodayTasks(id)
+    const weekTasks = this.statisticsService.getWeekTasks(id)
 
-    const todayStart = startOfDay(new Date())
-    const weekStart = startOfDay(subDays(new Date(), 7))
-
-    const todayTasks = await this.prisma.task.count({
-      where: { userID: id, createdAt: { gte: todayStart.toISOString() } },
-    })
-    const weekTasks = await this.prisma.task.count({
-      where: { userID: id, createdAt: { gte: weekStart.toISOString() } },
-    })
-
-    const { password: password, ...rest } = profile
+    const { password, ...rest } = profile
 
     return {
       user: rest,
