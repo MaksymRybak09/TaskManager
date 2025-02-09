@@ -10,10 +10,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service'
 import { AuthDTO } from './dto/auth.dto'
-import { ApiTags } from '@nestjs/swagger'
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -68,7 +68,14 @@ export class AuthController {
 
   @HttpCode(200)
   @Get('log-out')
-  async logOut(@Res({ passthrough: true }) res: Response) {
+  async logOut(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    const refreshTokenFromCookies =
+      req.cookies[this.authService.REFRESH_TOKEN_NAME]
+
+    if (!refreshTokenFromCookies) {
+      throw new UnauthorizedException('Refresh token not passed')
+    }
+
     this.authService.removeRefreshTokenToResponse(res)
     return true
   }
