@@ -2,7 +2,6 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
@@ -38,7 +37,7 @@ export class AuthService {
 
     const isPasswordValid = await verify(user.password, dto.password)
 
-    if (!isPasswordValid) throw new UnauthorizedException('Invalid password')
+    if (!isPasswordValid) throw new BadRequestException('Invalid password')
 
     return user
   }
@@ -68,16 +67,19 @@ export class AuthService {
   }
 
   async getNewTokens(refreshToken: string) {
-    const result = await this.JWTservice.verifyAsync(refreshToken)
-    if (!result) throw new UnauthorizedException('Invalid refresh token')
+    try {
+      const result = await this.JWTservice.verifyAsync(refreshToken)
+      if (!result) throw new BadRequestException('Invalid refresh token')
 
-    const { password, ...user } = await this.userService.getByID(result.id)
+      const { password, ...user } = await this.userService.getByID(result.id)
+      const tokens = this.issueTokens(user.id)
 
-    const tokens = this.issueTokens(user.id)
-
-    return {
-      user,
-      ...tokens,
+      return {
+        user,
+        ...tokens,
+      }
+    } catch (error) {
+      throw new BadRequestException('Invalid or expired refresh token')
     }
   }
 

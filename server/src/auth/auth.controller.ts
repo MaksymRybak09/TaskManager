@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  HttpCode,
   Post,
   Req,
   Res,
@@ -10,7 +9,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiTags, ApiResponse } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service'
 import { AuthDTO } from './dto/auth.dto'
@@ -20,8 +19,12 @@ import { AuthDTO } from './dto/auth.dto'
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @ApiResponse({
+    status: 201,
+    description: 'User registered successfully.',
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Post('register')
   async register(
     @Body() dto: AuthDTO,
@@ -33,8 +36,13 @@ export class AuthController {
     return response
   }
 
+  @ApiResponse({
+    status: 200,
+    description: 'User log-ined successfully.',
+  })
+  @ApiResponse({ status: 404, description: 'User not found.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Post('log-in')
   async logIn(@Body() dto: AuthDTO, @Res({ passthrough: true }) res: Response) {
     const { refreshToken, ...response } = await this.authService.logIn(dto)
@@ -43,7 +51,12 @@ export class AuthController {
     return response
   }
 
-  @HttpCode(200)
+  @ApiResponse({
+    status: 200,
+    description: 'New token isued.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Get('log-in/access-token')
   async getNewToken(
     @Req() req: Request,
@@ -66,7 +79,11 @@ export class AuthController {
     return response
   }
 
-  @HttpCode(200)
+  @ApiResponse({
+    status: 200,
+    description: 'User log-outed successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @Get('log-out')
   async logOut(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
     const refreshTokenFromCookies =
