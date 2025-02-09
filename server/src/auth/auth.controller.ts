@@ -13,10 +13,13 @@ import {
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service'
 import { AuthDTO } from './dto/auth.dto'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post('register')
