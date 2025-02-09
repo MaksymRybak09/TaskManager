@@ -92,6 +92,6 @@ export class AuthController {
     }
 
     this.authService.removeRefreshTokenToResponse(res)
-    return true
+    return { message: 'Logged out successfully' }
   }
 }
