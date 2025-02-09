@@ -81,7 +81,7 @@ export class AuthService {
     }
   }
 
-  addRedreshTokenToResponse(res: Response, refreshToken: string) {
+  addRefreshTokenToResponse(res: Response, refreshToken: string) {
     const expiresIn = new Date()
     expiresIn.setDate(expiresIn.getDate() + this.EXPIRE_DAY_REFRESH_TOKEN)
 
@@ -94,7 +94,7 @@ export class AuthService {
     })
   }
 
-  removeRedreshTokenToResponse(res: Response) {
+  removeRefreshTokenToResponse(res: Response) {
     res.cookie(this.REFRESH_TOKEN_NAME, '', {
       httpOnly: true,
       domain: this.configService.get<string>('CLIENT_DOMAIN'),

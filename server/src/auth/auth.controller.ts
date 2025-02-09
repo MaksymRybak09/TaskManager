@@ -28,7 +28,7 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const { refreshToken, ...response } = await this.authService.register(dto)
-    this.authService.addRedreshTokenToResponse(res, refreshToken)
+    this.authService.addRefreshTokenToResponse(res, refreshToken)
 
     return response
   }
@@ -38,7 +38,7 @@ export class AuthController {
   @Post('log-in')
   async logIn(@Body() dto: AuthDTO, @Res({ passthrough: true }) res: Response) {
     const { refreshToken, ...response } = await this.authService.logIn(dto)
-    this.authService.addRedreshTokenToResponse(res, refreshToken)
+    this.authService.addRefreshTokenToResponse(res, refreshToken)
 
     return response
   }
@@ -53,7 +53,7 @@ export class AuthController {
       req.cookies[this.authService.REFRESH_TOKEN_NAME]
 
     if (!refreshTokenFromCookies) {
-      this.authService.removeRedreshTokenToResponse(res)
+      this.authService.removeRefreshTokenToResponse(res)
       throw new UnauthorizedException('Refresh token not passed')
     }
 
@@ -61,7 +61,7 @@ export class AuthController {
       refreshTokenFromCookies,
     )
 
-    this.authService.addRedreshTokenToResponse(res, refreshToken)
+    this.authService.addRefreshTokenToResponse(res, refreshToken)
 
     return response
   }
@@ -69,7 +69,7 @@ export class AuthController {
   @HttpCode(200)
   @Get('log-out')
   async logOut(@Res({ passthrough: true }) res: Response) {
-    this.authService.removeRedreshTokenToResponse(res)
+    this.authService.removeRefreshTokenToResponse(res)
     return true
   }
 }
