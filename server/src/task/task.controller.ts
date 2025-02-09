@@ -10,11 +10,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { TaskDTO } from './dto/task.dto'
 import { TaskService } from './task.service'
 
+@ApiTags('Tasks')
 @Controller('tasks')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
