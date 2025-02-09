@@ -22,12 +22,11 @@ export class AuthService {
   ) {}
 
   private issueTokens(userID: string) {
-    const data = { id: userID }
-
-    const accessToken = this.JWTservice.sign(data, { expiresIn: '1h' })
-    const refreshToken = this.JWTservice.sign(data, { expiresIn: '7d' })
-
-    return { accessToken, refreshToken }
+    const payload = { id: userID }
+    return {
+      accessToken: this.JWTservice.sign(payload, { expiresIn: '1h' }),
+      refreshToken: this.JWTservice.sign(payload, { expiresIn: '7d' }),
+    }
   }
 
   private async validateUser(dto: AuthDTO) {
