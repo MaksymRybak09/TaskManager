@@ -8,6 +8,7 @@ import { UserDTO } from './dto/user.dto'
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
+
   async createUser(dto: AuthDTO) {
     const user = {
       name: '',
@@ -61,13 +62,13 @@ export class UserService {
     const weekStart = startOfDay(subDays(new Date(), 7))
 
     const todayTasks = await this.prisma.task.count({
-      where: { id, createdAt: { gte: todayStart.toISOString() } },
+      where: { userID: id, createdAt: { gte: todayStart.toISOString() } },
     })
     const weekTasks = await this.prisma.task.count({
-      where: { id, createdAt: { gte: weekStart.toISOString() } },
+      where: { userID: id, createdAt: { gte: weekStart.toISOString() } },
     })
 
-    const { password, ...rest } = profile
+    const { password: password, ...rest } = profile
 
     return {
       user: rest,
