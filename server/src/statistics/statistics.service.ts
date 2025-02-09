@@ -1,12 +1,13 @@
-import { Injectable } from '@nestjs/common'
+import { forwardRef, Inject, Injectable } from '@nestjs/common'
 import { startOfDay, subDays } from 'date-fns'
+import { UserService } from 'src/user/user.service'
 import { PrismaService } from '../prima.service'
-import { UserService } from './user.service'
 
 @Injectable()
 export class StatisticsService {
   constructor(
     private readonly prisma: PrismaService,
+    @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
   ) {}
 

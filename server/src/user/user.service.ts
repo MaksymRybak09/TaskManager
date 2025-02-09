@@ -1,14 +1,15 @@
-import { Injectable } from '@nestjs/common'
+import { forwardRef, Inject, Injectable } from '@nestjs/common'
 import { hash } from 'argon2'
 import { AuthDTO } from 'src/auth/dto/auth.dto'
+import { StatisticsService } from 'src/statistics/statistics.service'
 import { PrismaService } from '../prima.service'
 import { UserDTO } from './dto/user.dto'
-import { StatisticsService } from './statistics.service'
 
 @Injectable()
 export class UserService {
   constructor(
     private readonly prisma: PrismaService,
+    @Inject(forwardRef(() => StatisticsService))
     private readonly statisticsService: StatisticsService,
   ) {}
 
