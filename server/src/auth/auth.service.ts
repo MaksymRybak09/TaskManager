@@ -12,9 +12,6 @@ import { AuthDTO } from './dto/auth.dto'
 
 @Injectable()
 export class AuthService {
-  EXPIRE_DAY_REFRESH_TOKEN = 1
-  REFRESH_TOKEN_NAME = 'refreshToken'
-
   constructor(
     private readonly JWTservice: JwtService,
     private readonly userService: UserService,
@@ -85,9 +82,11 @@ export class AuthService {
 
   addRefreshTokenToResponse(res: Response, refreshToken: string) {
     const expiresIn = new Date()
-    expiresIn.setDate(expiresIn.getDate() + this.EXPIRE_DAY_REFRESH_TOKEN)
+    expiresIn.setDate(
+      expiresIn.getDate() + process.env.EXPIRE_DAY_REFRESH_TOKEN,
+    )
 
-    res.cookie(this.REFRESH_TOKEN_NAME, refreshToken, {
+    res.cookie(process.env.REFRESH_TOKEN_NAME, refreshToken, {
       httpOnly: true,
       domain: this.configService.get<string>('CLIENT_DOMAIN'),
       expires: expiresIn,
@@ -97,7 +96,7 @@ export class AuthService {
   }
 
   removeRefreshTokenToResponse(res: Response) {
-    res.cookie(this.REFRESH_TOKEN_NAME, '', {
+    res.cookie(process.env.REFRESH_TOKEN_NAME, '', {
       httpOnly: true,
       domain: this.configService.get<string>('CLIENT_DOMAIN'),
       expires: new Date(0),

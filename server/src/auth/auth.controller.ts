@@ -62,8 +62,7 @@ export class AuthController {
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const refreshTokenFromCookies =
-      req.cookies[this.authService.REFRESH_TOKEN_NAME]
+    const refreshTokenFromCookies = req.cookies[process.env.REFRESH_TOKEN_NAME]
 
     if (!refreshTokenFromCookies) {
       this.authService.removeRefreshTokenToResponse(res)
@@ -86,8 +85,7 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @Get('log-out')
   async logOut(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
-    const refreshTokenFromCookies =
-      req.cookies[this.authService.REFRESH_TOKEN_NAME]
+    const refreshTokenFromCookies = req.cookies[process.env.REFRESH_TOKEN_NAME]
 
     if (!refreshTokenFromCookies) {
       throw new UnauthorizedException('Refresh token not passed')
