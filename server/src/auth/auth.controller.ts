@@ -13,6 +13,7 @@ import { ApiTags, ApiResponse } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service'
 import { AuthDTO } from './dto/auth.dto'
+import { AuthResponseDTO } from './dto/auth.response.dto'
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -29,7 +30,7 @@ export class AuthController {
   async register(
     @Body() dto: AuthDTO,
     @Res({ passthrough: true }) res: Response,
-  ) {
+  ): Promise<AuthResponseDTO> {
     const { refreshToken, ...response } = await this.authService.register(dto)
     this.authService.addRefreshTokenToResponse(res, refreshToken)
 
@@ -44,7 +45,10 @@ export class AuthController {
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
   @Post('log-in')
-  async logIn(@Body() dto: AuthDTO, @Res({ passthrough: true }) res: Response) {
+  async logIn(
+    @Body() dto: AuthDTO,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<AuthResponseDTO> {
     const { refreshToken, ...response } = await this.authService.logIn(dto)
     this.authService.addRefreshTokenToResponse(res, refreshToken)
 
@@ -61,7 +65,7 @@ export class AuthController {
   async getNewToken(
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
-  ) {
+  ): Promise<AuthResponseDTO> {
     const refreshTokenFromCookies = req.cookies[process.env.REFRESH_TOKEN_NAME]
 
     if (!refreshTokenFromCookies) {
@@ -84,7 +88,10 @@ export class AuthController {
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @Get('log-out')
-  async logOut(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+  async logOut(
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<{ message: string }> {
     const refreshTokenFromCookies = req.cookies[process.env.REFRESH_TOKEN_NAME]
 
     if (!refreshTokenFromCookies) {

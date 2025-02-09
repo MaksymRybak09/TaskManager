@@ -1,3 +1,4 @@
+import { User } from '@prisma/client'
 import {
   BadRequestException,
   Injectable,
@@ -9,6 +10,7 @@ import { verify } from 'argon2'
 import { Response } from 'express'
 import { UserService } from '../user/user.service'
 import { AuthDTO } from './dto/auth.dto'
+import { AuthResponseDTO } from './dto/auth.response.dto'
 
 @Injectable()
 export class AuthService {
@@ -26,7 +28,7 @@ export class AuthService {
     }
   }
 
-  private async validateUser(dto: AuthDTO) {
+  private async validateUser(dto: AuthDTO): Promise<User> {
     const user = await this.userService.getByEmail(dto.email)
 
     if (!user) throw new NotFoundException('User not found')
@@ -38,7 +40,7 @@ export class AuthService {
     return user
   }
 
-  async register(dto: AuthDTO) {
+  async register(dto: AuthDTO): Promise<AuthResponseDTO> {
     const oldUser = await this.userService.getByEmail(dto.email)
 
     if (oldUser) throw new BadRequestException('User already exists')
@@ -52,7 +54,7 @@ export class AuthService {
     }
   }
 
-  async logIn(dto: AuthDTO) {
+  async logIn(dto: AuthDTO): Promise<AuthResponseDTO> {
     const { password, ...user } = await this.validateUser(dto)
     const tokens = this.issueTokens(user.id)
 
@@ -62,7 +64,7 @@ export class AuthService {
     }
   }
 
-  async getNewTokens(refreshToken: string) {
+  async getNewTokens(refreshToken: string): Promise<AuthResponseDTO> {
     try {
       const result = await this.JWTservice.verifyAsync(refreshToken)
       if (!result) throw new BadRequestException('Invalid refresh token')
