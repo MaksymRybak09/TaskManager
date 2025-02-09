@@ -79,6 +79,7 @@ export class AuthService {
         ...tokens,
       }
     } catch (error) {
+      console.error('Error verifying refresh token:', error.message)
       throw new BadRequestException('Invalid or expired refresh token')
     }
   }
