@@ -2,16 +2,16 @@ import {
   Body,
   Controller,
   Get,
-  HttpCode,
   Put,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
+import { User } from '@prisma/client'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { UserDTO } from './dto/user.dto'
 import { UserService } from './user.service'
-import { ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @ApiTags('Users')
 @Controller('profile')
@@ -26,7 +26,7 @@ export class UserController {
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Get()
   @Auth()
-  async profile(@CurrentUser('id') id: string) {
+  async profile(@CurrentUser('id') id: string): Promise<User> {
     return this.userService.getByID(id)
   }
 
@@ -39,7 +39,10 @@ export class UserController {
   @UsePipes(new ValidationPipe())
   @Put()
   @Auth()
-  async updateProfile(@CurrentUser('id') id: string, @Body() dto: UserDTO) {
+  async updateProfile(
+    @CurrentUser('id') id: string,
+    @Body() dto: UserDTO,
+  ): Promise<UserDTO> {
     return this.userService.updateUser(id, dto)
   }
 }
