@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { Task } from '@prisma/client'
 import { PrismaService } from './../prima.service'
 import { TaskDTO } from './dto/task.dto'
 
@@ -6,7 +7,7 @@ import { TaskDTO } from './dto/task.dto'
 export class TaskService {
   constructor(private prisma: PrismaService) {}
 
-  async getAll(userID: string) {
+  async getAll(userID: string): Promise<Task[]> {
     return this.prisma.task.findMany({
       where: {
         userID,
@@ -14,7 +15,7 @@ export class TaskService {
     })
   }
 
-  async create(dto: TaskDTO, userID: string) {
+  async create(dto: TaskDTO, userID: string): Promise<Task> {
     return this.prisma.task.create({
       data: {
         ...dto,
@@ -27,7 +28,11 @@ export class TaskService {
     })
   }
 
-  async update(dto: Partial<TaskDTO>, taskId: string, userID: string) {
+  async update(
+    dto: Partial<TaskDTO>,
+    taskId: string,
+    userID: string,
+  ): Promise<Task> {
     return this.prisma.task.update({
       where: {
         userID,
@@ -37,7 +42,7 @@ export class TaskService {
     })
   }
 
-  async delete(taskId: string) {
+  async delete(taskId: string): Promise<Task> {
     return this.prisma.task.delete({
       where: {
         id: taskId,
