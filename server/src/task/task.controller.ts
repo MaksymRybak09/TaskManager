@@ -73,7 +73,6 @@ export class TaskController {
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @HttpCode(200)
   @Delete(':id')
   @Auth()
   async delete(@Param('id') id: string): Promise<Task> {
