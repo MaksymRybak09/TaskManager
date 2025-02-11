@@ -4,6 +4,7 @@ import { AuthDTO } from 'src/auth/dto/auth.dto'
 import { StatisticsService } from 'src/statistics/statistics.service'
 import { PrismaService } from '../prima.service'
 import { UserDTO } from './dto/user.dto'
+import { User } from '@prisma/client'
 
 @Injectable()
 export class UserService {
@@ -13,7 +14,7 @@ export class UserService {
     private readonly statisticsService: StatisticsService,
   ) {}
 
-  async createUser(dto: AuthDTO) {
+  async createUser(dto: AuthDTO): Promise<User> {
     const user = {
       name: '',
       email: dto.email,
@@ -22,7 +23,7 @@ export class UserService {
     return this.prisma.user.create({ data: user })
   }
 
-  async updateUser(id: string, dto: UserDTO) {
+  async updateUser(id: string, dto: UserDTO): Promise<UserDTO> {
     let data = dto
 
     if (dto.password) {
@@ -39,7 +40,7 @@ export class UserService {
     })
   }
 
-  async getByID(id: string) {
+  async getByID(id: string): Promise<User> {
     return this.prisma.user.findUnique({
       where: { id },
       include: {
@@ -48,7 +49,7 @@ export class UserService {
     })
   }
 
-  async getByEmail(email: string) {
+  async getByEmail(email: string): Promise<User> {
     return this.prisma.user.findUnique({
       where: { email },
     })
