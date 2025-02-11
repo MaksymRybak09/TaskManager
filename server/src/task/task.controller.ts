@@ -10,7 +10,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
+import { Task } from '@prisma/client'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { TaskDTO } from './dto/task.dto'
@@ -21,36 +22,61 @@ import { TaskService } from './task.service'
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
+  @ApiResponse({
+    status: 200,
+    description: 'Tasks fetched successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Get()
   @Auth()
-  async getAll(@CurrentUser('id') userID: string) {
+  async getAll(@CurrentUser('id') userID: string): Promise<Task[]> {
     return this.taskService.getAll(userID)
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Task created successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Post()
   @Auth()
-  async create(@Body() dto: TaskDTO, @CurrentUser('id') userID: string) {
+  async create(
+    @Body() dto: TaskDTO,
+    @CurrentUser('id') userID: string,
+  ): Promise<Task> {
     return this.taskService.create(dto, userID)
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Task updated successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Put(':id')
   @Auth()
   async update(
     @Body() dto: TaskDTO,
     @CurrentUser('id') userID: string,
     @Param('id') id: string,
-  ) {
+  ): Promise<Task> {
     return this.taskService.update(dto, id, userID)
   }
 
+  @ApiResponse({
+    status: 204,
+    description: 'Task deleted successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @HttpCode(200)
   @Delete(':id')
   @Auth()
-  async delete(@Param('id') id: string) {
+  async delete(@Param('id') id: string): Promise<Task> {
     return this.taskService.delete(id)
   }
 }
