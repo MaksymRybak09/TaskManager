@@ -10,12 +10,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
+import { TimeBlock } from '@prisma/client'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { TimeBlockDTO } from './dto/time-block.dto'
 import { UpdateOrderDTO } from './dto/update-order.dto'
 import { TimeBlockService } from './time-block.service'
-import { ApiTags } from '@nestjs/swagger'
 
 @ApiTags('Time blocks')
 @Controller('time-blocks')
@@ -24,7 +25,7 @@ export class TimeBlockController {
 
   @Get()
   @Auth()
-  async getAll(@CurrentUser('id') userID: string) {
+  async getAll(@CurrentUser('id') userID: string): Promise<TimeBlock[]> {
     return this.timeBlockService.getAll(userID)
   }
 
@@ -32,7 +33,10 @@ export class TimeBlockController {
   @HttpCode(200)
   @Post()
   @Auth()
-  async create(@Body() dto: TimeBlockDTO, @CurrentUser('id') userID: string) {
+  async create(
+    @Body() dto: TimeBlockDTO,
+    @CurrentUser('id') userID: string,
+  ): Promise<TimeBlock> {
     return this.timeBlockService.create(dto, userID)
   }
 
@@ -40,7 +44,7 @@ export class TimeBlockController {
   @HttpCode(200)
   @Put('update-order')
   @Auth()
-  updateOrder(@Body() updateOrderDto: UpdateOrderDTO) {
+  updateOrder(@Body() updateOrderDto: UpdateOrderDTO): Promise<TimeBlock[]> {
     return this.timeBlockService.updateOrder(updateOrderDto.ids)
   }
 
@@ -52,14 +56,17 @@ export class TimeBlockController {
     @Body() dto: TimeBlockDTO,
     @CurrentUser('id') userID: string,
     @Param('id') id: string,
-  ) {
+  ): Promise<TimeBlock> {
     return this.timeBlockService.update(dto, id, userID)
   }
 
   @HttpCode(200)
   @Delete(':id')
   @Auth()
-  async delete(@CurrentUser('id') userID: string, @Param('id') id: string) {
+  async delete(
+    @CurrentUser('id') userID: string,
+    @Param('id') id: string,
+  ): Promise<TimeBlock> {
     return this.timeBlockService.delete(id, userID)
   }
 }
