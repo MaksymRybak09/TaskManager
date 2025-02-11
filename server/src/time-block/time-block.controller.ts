@@ -3,14 +3,13 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
   Param,
   Post,
   Put,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
 import { TimeBlock } from '@prisma/client'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
@@ -23,14 +22,25 @@ import { TimeBlockService } from './time-block.service'
 export class TimeBlockController {
   constructor(private readonly timeBlockService: TimeBlockService) {}
 
+  @ApiResponse({
+    status: 200,
+    description: 'Time blocks fetched successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Get()
   @Auth()
   async getAll(@CurrentUser('id') userID: string): Promise<TimeBlock[]> {
     return this.timeBlockService.getAll(userID)
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Time block created successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Post()
   @Auth()
   async create(
@@ -40,27 +50,42 @@ export class TimeBlockController {
     return this.timeBlockService.create(dto, userID)
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Time blocks order updated successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Put('update-order')
   @Auth()
   updateOrder(@Body() updateOrderDto: UpdateOrderDTO): Promise<TimeBlock[]> {
     return this.timeBlockService.updateOrder(updateOrderDto.ids)
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Time block updated successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Put(':id')
   @Auth()
   async update(
-    @Body() dto: TimeBlockDTO,
+    @Body() dto: Partial<TimeBlockDTO>,
     @CurrentUser('id') userID: string,
     @Param('id') id: string,
   ): Promise<TimeBlock> {
     return this.timeBlockService.update(dto, id, userID)
   }
 
-  @HttpCode(200)
+  @ApiResponse({
+    status: 204,
+    description: 'Time block deleted successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Delete(':id')
   @Auth()
   async delete(
