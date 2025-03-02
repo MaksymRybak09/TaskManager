@@ -20,4 +20,16 @@ export class StatisticsController {
   async getTotalTasks(@CurrentUser('id') userID: string): Promise<number> {
     return this.statisticsService.getTotalTasks(userID)
   }
+
+  @ApiResponse({
+    status: 200,
+    description: 'Completed tasks fetched successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @Get('completed-tasks')
+  @Auth()
+  async getCompletedTasks(@CurrentUser('id') userID: string): Promise<number> {
+    return this.statisticsService.getCompletedTasks(userID)
+  }
 }
