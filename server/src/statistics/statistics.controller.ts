@@ -2,6 +2,7 @@ import { Controller, Get } from '@nestjs/common'
 import { ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
+import { StatisticsResponseDTO } from './dto/statistics.response.dto'
 import { StatisticsService } from './statistics.service'
 
 @ApiTags('Statistics')
@@ -55,5 +56,19 @@ export class StatisticsController {
   @Auth()
   async getWeekTasks(@CurrentUser('id') userID: string): Promise<number> {
     return this.statisticsService.getWeekTasks(userID)
+  }
+
+  @ApiResponse({
+    status: 200,
+    description: 'Full statistics fetched successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @Get('full')
+  @Auth()
+  async getFullStats(
+    @CurrentUser('id') userID: string,
+  ): Promise<StatisticsResponseDTO> {
+    return this.statisticsService.getFullStats(userID)
   }
 }
