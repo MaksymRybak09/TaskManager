@@ -44,4 +44,16 @@ export class StatisticsController {
   async getTodayTasks(@CurrentUser('id') userID: string): Promise<number> {
     return this.statisticsService.getTodayTasks(userID)
   }
+
+  @ApiResponse({
+    status: 200,
+    description: 'Week tasks fetched successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @Get('week-tasks')
+  @Auth()
+  async getWeekTasks(@CurrentUser('id') userID: string): Promise<number> {
+    return this.statisticsService.getWeekTasks(userID)
+  }
 }
