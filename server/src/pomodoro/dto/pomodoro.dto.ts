@@ -1,20 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsBoolean, IsNumber, IsOptional } from 'class-validator'
 
-export class PomodoroSessionDTO {
+export class PomodoroTimerDTO {
   @ApiProperty({ example: false })
   @IsOptional()
   @IsBoolean()
-  isCompleted: boolean
-}
+  isCompleted?: boolean
 
-export class PomodoroRoundDTO {
-  @ApiProperty({ example: 60 })
+  @ApiProperty({ example: 2 })
+  @IsOptional()
   @IsNumber()
-  totalSeconds: number
+  currentRound?: number
 
-  @ApiProperty({ example: false })
+  @ApiProperty({ example: true })
   @IsOptional()
   @IsBoolean()
-  isCompleted: boolean
+  isWorkingTime?: boolean
 }
