@@ -1,0 +1,23 @@
+import { Controller, Get } from '@nestjs/common'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
+import { Auth } from 'src/auth/decorators/auth.decorator'
+import { CurrentUser } from 'src/auth/decorators/user.decorator'
+import { StatisticsService } from './statistics.service'
+
+@ApiTags('Statistics')
+@Controller('statistics')
+export class StatisticsController {
+  constructor(private readonly statisticsService: StatisticsService) {}
+
+  @ApiResponse({
+    status: 200,
+    description: 'Total tasks fetched successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @Get('total-tasks')
+  @Auth()
+  async getTotalTasks(@CurrentUser('id') userID: string): Promise<number> {
+    return this.statisticsService.getTotalTasks(userID)
+  }
+}
