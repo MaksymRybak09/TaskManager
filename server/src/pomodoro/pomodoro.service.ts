@@ -1,74 +1,54 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
+import { PomodoroTimer } from '@prisma/client'
+import { UserService } from 'src/user/user.service'
 import { PrismaService } from './../prima.service'
-import { PomodoroRoundDTO, PomodoroSessionDTO } from './dto/pomodoro.dto'
+import { PomodoroTimerDTO } from './dto/pomodoro.dto'
 
 @Injectable()
 export class PomodoroService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private userService: UserService,
+  ) {}
 
-  async getTodaySession(userID: string) {
-    const today = new Date().toISOString().split('T')[0]
-
-    return this.prisma.pomodoroSession.findFirst({
+  async getByUserID(userID: string): Promise<PomodoroTimer> {
+    return this.prisma.pomodoroTimer.findFirst({
       where: {
-        createdAt: {
-          gte: new Date(today),
-        },
         userID,
-      },
-      include: {
-        rounds: {
-          orderBy: {
-            id: 'asc',
-          },
-        },
       },
     })
   }
 
-  async create(userID: string) {
-    const todaySession = await this.getTodaySession(userID)
+  async create(userID: string): Promise<PomodoroTimer> {
+    const timer = await this.getByUserID(userID)
 
-    if (todaySession) return todaySession
+    if (timer) return timer
 
-    const user = await this.prisma.user.findUnique({
-      where: {
-        id: userID,
-      },
-      select: {
-        intervalsCount: true,
-      },
-    })
+    const user = await this.userService.getByID(userID)
 
     if (!user) throw new NotFoundException('User not found')
 
-    return this.prisma.pomodoroSession.create({
+    return this.prisma.pomodoroTimer.create({
       data: {
-        rounds: {
-          createMany: {
-            data: Array.from({ length: user.intervalsCount }, () => ({
-              totalSeconds: 0,
-            })),
-          },
-        },
+        currentRound: 1,
+        isWorkingTime: true,
+        isCompleted: false,
+        rounds: user.intervalsCount,
         user: {
           connect: {
             id: userID,
           },
         },
       },
-      include: {
-        rounds: true,
-      },
     })
   }
 
   async update(
-    dto: Partial<PomodoroSessionDTO>,
+    dto: PomodoroTimerDTO,
     pomodoroId: string,
     userID: string,
-  ) {
-    return this.prisma.pomodoroSession.update({
+  ): Promise<PomodoroTimer> {
+    return this.prisma.pomodoroTimer.update({
       where: {
         userID,
         id: pomodoroId,
@@ -77,8 +57,8 @@ export class PomodoroService {
     })
   }
 
-  async deleteSession(sessionId: string, userID: string) {
-    return this.prisma.pomodoroSession.delete({
+  async deleteTimer(sessionId: string, userID: string): Promise<PomodoroTimer> {
+    return this.prisma.pomodoroTimer.delete({
       where: {
         id: sessionId,
         userID,

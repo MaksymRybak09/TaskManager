@@ -3,17 +3,17 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
   Param,
   Post,
   Put,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
+import { PomodoroTimer } from '@prisma/client'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
-import { PomodoroRoundDTO, PomodoroSessionDTO } from './dto/pomodoro.dto'
+import { PomodoroTimerDTO } from './dto/pomodoro.dto'
 import { PomodoroService } from './pomodoro.service'
 
 @ApiTags('Timer')
@@ -21,38 +21,61 @@ import { PomodoroService } from './pomodoro.service'
 export class PomodoroController {
   constructor(private readonly pomodoroService: PomodoroService) {}
 
-  @Get('today')
+  @ApiResponse({
+    status: 200,
+    description: 'Pomodoro timer fetched successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @Get()
   @Auth()
-  async getTodaySession(@CurrentUser('id') userID: string) {
-    return this.pomodoroService.getTodaySession(userID)
+  async getTimerByUserID(
+    @CurrentUser('id') userID: string,
+  ): Promise<PomodoroTimer> {
+    return this.pomodoroService.getByUserID(userID)
   }
 
-  @HttpCode(200)
+  @ApiResponse({
+    status: 201,
+    description: 'Pomodoro timer created successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
   @Post()
   @Auth()
-  async create(@CurrentUser('id') userID: string) {
+  async create(@CurrentUser('id') userID: string): Promise<PomodoroTimer> {
     return this.pomodoroService.create(userID)
   }
 
+  @ApiResponse({
+    status: 201,
+    description: 'Pomodoro timer updated successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Put(':id')
   @Auth()
   async update(
-    @Body() dto: PomodoroSessionDTO,
+    @Body() dto: PomodoroTimerDTO,
     @CurrentUser('id') userID: string,
     @Param('id') id: string,
-  ) {
+  ): Promise<PomodoroTimer> {
     return this.pomodoroService.update(dto, id, userID)
   }
 
-  @HttpCode(200)
+  @ApiResponse({
+    status: 204,
+    description: 'Timer deleted successfully.',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Delete(':id')
   @Auth()
-  async deleteSession(
+  async deleteTimer(
     @Param('id') id: string,
     @CurrentUser('id') userID: string,
-  ) {
-    return this.pomodoroService.deleteSession(id, userID)
+  ): Promise<PomodoroTimer> {
+    return this.pomodoroService.deleteTimer(id, userID)
   }
 }
