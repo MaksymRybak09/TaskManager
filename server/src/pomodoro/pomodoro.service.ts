@@ -77,15 +77,6 @@ export class PomodoroService {
     })
   }
 
-  async updateRound(dto: Partial<PomodoroRoundDTO>, roundId: string) {
-    return this.prisma.pomodoroRound.update({
-      where: {
-        id: roundId,
-      },
-      data: dto,
-    })
-  }
-
   async deleteSession(sessionId: string, userID: string) {
     return this.prisma.pomodoroSession.delete({
       where: {

@@ -36,14 +36,6 @@ export class PomodoroController {
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
-  @Put('/round/:id')
-  @Auth()
-  async updateRound(@Param('id') id: string, @Body() dto: PomodoroRoundDTO) {
-    return this.pomodoroService.updateRound(dto, id)
-  }
-
-  @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Put(':id')
   @Auth()
   async update(
