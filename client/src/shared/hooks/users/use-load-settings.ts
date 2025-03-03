@@ -1,10 +1,10 @@
-import { useProfile } from './use-profile.hook'
+import { useProfile } from './use-profile'
 
 export const useLoadSettings = () => {
-  const { profile } = useProfile()
+  const { user } = useProfile()
 
-  const workInterval = profile?.user.workInterval ?? 50
-  const breakInterval = profile?.user.breakInterval ?? 10
+  const workInterval = user?.workInterval ?? 50
+  const breakInterval = user?.breakInterval ?? 10
 
   return {
     workInterval,

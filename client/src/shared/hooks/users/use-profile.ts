@@ -8,5 +8,5 @@ export const useProfile = () => {
     queryFn: () => userService.getProfile(),
   })
 
-  return { profile: data, isLoading, isSuccess }
+  return { user: data, isLoading, isSuccess }
 }
