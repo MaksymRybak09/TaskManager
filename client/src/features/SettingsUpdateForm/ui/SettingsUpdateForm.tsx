@@ -1,7 +1,7 @@
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import { FieldError } from 'react-hook-form'
-import { useSettingsUpdateForm } from '../hooks/use-settings-update-form.hook'
+import { useSettingsUpdateForm } from '../hooks/use-settings-update-form'
 import styles from './settings-update-form.module.scss'
 
 function SettingsUpdateForm() {
