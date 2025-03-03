@@ -4,7 +4,7 @@ import styles from './stattistics-row.module.scss'
 type StatisticsRowProps = {
   data: {
     label: string
-    value: string
+    value: number
   }[]
 }
 

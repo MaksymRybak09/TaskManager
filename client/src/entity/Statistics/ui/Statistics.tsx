@@ -1,16 +1,16 @@
 import StatisticsRow from '@/shared/components/statisticsRow/StatisticsRow'
-import { useProfile } from '@/shared/hooks/users/use-profile.hook'
+import { useStatistics } from '@/shared/hooks/users/use-statistics'
 
 export default function Statistics() {
-  const { profile, isLoading } = useProfile()
+  const { statistics, isStatisticsLoading } = useStatistics()
 
-  if (isLoading) {
-    return 'Loading...'
+  if (isStatisticsLoading) {
+    return <div>Loading...</div>
   }
 
-  return profile?.statistics.length ? (
-    <StatisticsRow data={profile.statistics} />
-  ) : (
-    <div>Statistics not found</div>
-  )
+  if (!statistics) {
+    return <div>Statistics not found</div>
+  }
+
+  return <StatisticsRow data={statistics} />
 }

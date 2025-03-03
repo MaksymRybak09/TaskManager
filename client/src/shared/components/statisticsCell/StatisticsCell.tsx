@@ -2,7 +2,7 @@ import styles from './statistics-cell.module.scss'
 
 type StatisticsCellProps = {
   label: string
-  value: string
+  value: number
 }
 
 function StatisticsCell(props: StatisticsCellProps) {
