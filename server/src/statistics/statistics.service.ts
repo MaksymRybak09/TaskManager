@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common'
-import { startOfDay, subDays } from 'date-fns'
+import { addDays, startOfDay } from 'date-fns'
 import { UserService } from 'src/user/user.service'
 import { PrismaService } from '../prima.service'
 import { StatisticsResponseDTO } from './dto/statistics.response.dto'
@@ -26,15 +26,19 @@ export class StatisticsService {
     const todayStart = startOfDay(new Date())
 
     return await this.prisma.task.count({
-      where: { userID: userID, createdAt: { gte: todayStart.toISOString() } },
+      where: { userID: userID, createdAt: todayStart.toISOString() },
     })
   }
 
   async getWeekTasks(userID: string): Promise<number> {
-    const weekStart = startOfDay(subDays(new Date(), 7))
+    const weekStart = startOfDay(addDays(new Date(), 7))
 
     return await this.prisma.task.count({
-      where: { userID: userID, createdAt: { gte: weekStart.toISOString() } },
+      where: {
+        userID: userID,
+        createdAt: { lte: weekStart.toISOString() },
+        isCompleted: false,
+      },
     })
   }
 
@@ -44,11 +48,23 @@ export class StatisticsService {
     const todayTasks = await this.getTodayTasks(userID)
     const weekTasks = await this.getWeekTasks(userID)
 
-    return {
-      totalTasks,
-      completedTasks,
-      todayTasks,
-      weekTasks,
-    }
+    return [
+      {
+        label: 'Total tasks',
+        value: totalTasks,
+      },
+      {
+        label: 'Completed tasks',
+        value: completedTasks,
+      },
+      {
+        label: "Today's tasks",
+        value: todayTasks,
+      },
+      {
+        label: "Week's tasks",
+        value: weekTasks,
+      },
+    ]
   }
 }
