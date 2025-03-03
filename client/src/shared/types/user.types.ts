@@ -1,18 +1,10 @@
 export interface IUser {
-  id: String
-  name?: String
-  email: String
+  id: string
+  name?: string
+  email: string
   workInterval?: number
   breakInterval?: number
   intervalsCount?: number
 }
 
-export interface IProfileResponse {
-  user: IUser
-  statistics: {
-    label: string
-    value: string
-  }[]
-}
-
-export type TypeUserForm = Omit<IUser, 'id'> & { password?: string }
+export type UserForm = Omit<IUser, 'id'> & { password?: string }
