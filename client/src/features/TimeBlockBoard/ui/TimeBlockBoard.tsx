@@ -1,3 +1,5 @@
+'use client'
+
 import { TimeBlockForm } from '@/features/TimeBlockForm'
 import { TimeBlockList } from '@/features/TimeBlockList'
 import { TimeBlockFormState } from '@/shared/types/time-block.types'

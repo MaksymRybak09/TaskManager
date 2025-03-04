@@ -1,3 +1,5 @@
+'use client'
+
 import { TimeBlock } from '@/entity/TimeBlock'
 import { DeleteTimeBlockButton } from '@/features/DeleteTimeBlockButton'
 import { UpdateTimeBlockButton } from '@/features/UpdateTimeBlockButton'
