@@ -4,7 +4,7 @@ class DASHBOARD {
   REGISTER = `${this.root}register`
   LOG_IN = `${this.root}log-in`
 
-  HOME = this.root
+  HOME = `${this.root}statistics`
   TASKS = `${this.root}tasks`
   TIMER = `${this.root}timer`
   TIME_BLOCK = `${this.root}time-block`
