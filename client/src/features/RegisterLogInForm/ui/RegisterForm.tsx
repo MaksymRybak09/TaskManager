@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import Heading from '@/shared/components/heading/Heading'
