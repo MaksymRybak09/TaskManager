@@ -1,5 +1,5 @@
 import StatisticsCell from '../statisticsCell/StatisticsCell'
-import styles from './stattistics-row.module.scss'
+import styles from './statistics-row.module.scss'
 
 type StatisticsRowProps = {
   data: {
