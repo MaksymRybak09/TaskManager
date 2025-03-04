@@ -1,4 +1,4 @@
-import { useTaskDebounce } from '@/shared/hooks/tasks/use-task-debounce.hook'
+import { useTaskDebounce } from '@/shared/hooks/tasks/use-task-debounce'
 import { ITask, PriorityOption, TaskFormState } from '@/shared/types/task.types'
 import { useForm } from 'react-hook-form'
 

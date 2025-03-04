@@ -1,7 +1,7 @@
 'use client'
 
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
-import { useDeleteTask } from '@/shared/hooks/tasks/use-delete-task.hook'
+import { useDeleteTask } from '@/shared/hooks/tasks/use-delete-task'
 import { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
 

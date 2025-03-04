@@ -1,4 +1,4 @@
-import { useOutside } from '@/shared/hooks/general/use-outside.hook'
+import { useOutside } from '@/shared/hooks/general/use-outside'
 import { useState } from 'react'
 
 export const useDatePicker = (onChange: (value: string) => void) => {

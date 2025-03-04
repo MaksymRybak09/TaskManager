@@ -1,6 +1,6 @@
 import { FILTERS } from '@/shared/constants/task-table-filters'
 import { DropResult } from '@hello-pangea/dnd'
-import { useUpdateTask } from './use-update-task.hook'
+import { useUpdateTask } from './use-update-task'
 
 export const useTaskDND = () => {
   const { updateTask } = useUpdateTask()
