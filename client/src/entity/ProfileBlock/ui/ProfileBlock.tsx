@@ -1,3 +1,5 @@
+'use client'
+
 import ProfileImage from '@/shared/components/profileImage/ProfileImage'
 import { useProfile } from '@/shared/hooks/users/use-profile'
 import styles from './profile-block.module.scss'

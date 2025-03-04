@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/shared/components/button/Button'
 import { useLogOut } from '@/shared/hooks/users/use-log-out'
 

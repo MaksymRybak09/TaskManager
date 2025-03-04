@@ -1,3 +1,5 @@
+'use client'
+
 import { TasksTable } from '@/features/TasksTable'
 import { COLUMNS } from '@/shared/constants/task-table-columns'
 import { useTaskDND } from '@/shared/hooks/tasks/use-task-dnd'

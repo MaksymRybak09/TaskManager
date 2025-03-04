@@ -1,3 +1,5 @@
+'use client'
+
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
 import { useDeleteTask } from '@/shared/hooks/tasks/use-delete-task.hook'
 import { ITask } from '@/shared/types/task.types'

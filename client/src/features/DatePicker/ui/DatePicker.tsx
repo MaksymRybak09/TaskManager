@@ -1,3 +1,5 @@
+'use client'
+
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
