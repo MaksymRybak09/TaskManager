@@ -8,7 +8,6 @@ import {
 class AuthService {
   async register(data: IAuthForm) {
     const response = await baseAxios.post<IAuthresponse>(`/auth/register`, data)
-    console.log('Response' + response.data.accessToken)
 
     if (response.data.accessToken) {
       saveTokenToStorage(response.data.accessToken)
