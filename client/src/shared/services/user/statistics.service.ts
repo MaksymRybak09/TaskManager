@@ -1,5 +1,5 @@
 import { authAxios } from '@/shared/api/interseptors'
-import { IStatistics } from '@/shared/types/statistics.types'
+import type { IStatistics } from '@/shared/types/statistics.types'
 
 class StatisticsService {
   private baseURL = 'statistics'

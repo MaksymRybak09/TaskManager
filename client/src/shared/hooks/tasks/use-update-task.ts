@@ -1,5 +1,5 @@
 import { taskService } from '@/shared/services/task/task.service'
-import { TaskFormState } from '@/shared/types/task.types'
+import type { TaskFormState } from '@/shared/types/task.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export const useUpdateTask = (key?: string) => {

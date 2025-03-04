@@ -1,5 +1,5 @@
 import Badge from '@/shared/components/badge/Badge'
-import { PriorityOption } from '@/shared/types/task.types'
+import type { PriorityOption } from '@/shared/types/task.types'
 import { usePrioritySelect } from '../hooks/use-priority-select.hook'
 import styles from './priority-select.module.scss'
 

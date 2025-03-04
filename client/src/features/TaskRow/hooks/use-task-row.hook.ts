@@ -1,5 +1,9 @@
 import { useTaskDebounce } from '@/shared/hooks/tasks/use-task-debounce'
-import { ITask, PriorityOption, TaskFormState } from '@/shared/types/task.types'
+import type {
+  ITask,
+  PriorityOption,
+  TaskFormState,
+} from '@/shared/types/task.types'
 import { useForm } from 'react-hook-form'
 
 export const useTaskRow = (item: ITask, priorities: string[]) => {

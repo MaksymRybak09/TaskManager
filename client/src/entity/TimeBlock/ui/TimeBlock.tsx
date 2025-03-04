@@ -1,7 +1,7 @@
 'use client'
 
 import { useTimeBlockSortable } from '@/shared/hooks/time-block/use-time-block-sortable'
-import { ITimeBlock } from '@/shared/types/time-block.types'
+import type { ITimeBlock } from '@/shared/types/time-block.types'
 import { ReactNode } from 'react'
 import timeBlockStyles from './time-block.module.scss'
 

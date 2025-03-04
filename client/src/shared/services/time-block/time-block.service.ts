@@ -1,5 +1,8 @@
 import { authAxios } from '@/shared/api/interseptors'
-import { ITimeBlock, TimeBlockFormState } from '@/shared/types/time-block.types'
+import type {
+  ITimeBlock,
+  TimeBlockFormState,
+} from '@/shared/types/time-block.types'
 
 class TimeBlockService {
   private baseURL = 'time-blocks'

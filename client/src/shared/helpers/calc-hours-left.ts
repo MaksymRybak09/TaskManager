@@ -1,4 +1,4 @@
-import { ITimeBlock } from '../types/time-block.types'
+import type { ITimeBlock } from '../types/time-block.types'
 
 export const calcHoursLeft = (items: ITimeBlock[] | undefined) => {
   const totalMinutes = items?.reduce((acc, item) => acc + item.duration, 0) || 0

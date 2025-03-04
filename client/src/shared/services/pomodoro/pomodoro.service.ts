@@ -1,5 +1,5 @@
 import { authAxios } from '@/shared/api/interseptors'
-import {
+import type {
   IPomodoroSession,
   PomodoroSessionState,
 } from '@/shared/types/pomodoro.types'

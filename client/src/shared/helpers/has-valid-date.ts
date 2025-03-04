@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import { ITask } from '../types/task.types'
+import type { ITask } from '../types/task.types'
 
 dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)

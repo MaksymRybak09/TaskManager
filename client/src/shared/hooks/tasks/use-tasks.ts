@@ -1,5 +1,5 @@
 import { taskService } from '@/shared/services/task/task.service'
-import { ITask } from '@/shared/types/task.types'
+import type { ITask } from '@/shared/types/task.types'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 

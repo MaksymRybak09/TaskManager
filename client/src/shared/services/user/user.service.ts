@@ -1,5 +1,5 @@
 import { authAxios } from '@/shared/api/interseptors'
-import { IUser, UserForm } from '@/shared/types/user.types'
+import type { IUser, UserForm } from '@/shared/types/user.types'
 
 class UserService {
   private baseURL = 'profile'

@@ -1,6 +1,6 @@
 import { useCreateTimeBlock } from '@/shared/hooks/time-block/use-create-time-block'
 import { useUpdateTimeBlock } from '@/shared/hooks/time-block/use-update-time-block'
-import { TimeBlockFormState } from '@/shared/types/time-block.types'
+import type { TimeBlockFormState } from '@/shared/types/time-block.types'
 import { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 

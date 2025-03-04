@@ -1,5 +1,5 @@
 import { DASHBOARD_PAGES } from '@/shared/config/pages-url.config'
-import { IAuthForm } from '@/shared/types/auth.types'
+import type { IAuthForm } from '@/shared/types/auth.types'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'

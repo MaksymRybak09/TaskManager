@@ -1,6 +1,6 @@
 import { getPriority } from '@/shared/helpers/get-priority'
 import { useOutside } from '@/shared/hooks/general/use-outside'
-import { PriorityOption } from '@/shared/types/task.types'
+import type { PriorityOption } from '@/shared/types/task.types'
 
 export const usePrioritySelect = (data: PriorityOption[], value: string) => {
   const { ref, isShow, setIsShow } = useOutside(false)

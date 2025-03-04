@@ -1,5 +1,5 @@
 import { timeBlockService } from '@/shared/services/time-block/time-block.service'
-import { ITimeBlock } from '@/shared/types/time-block.types'
+import type { ITimeBlock } from '@/shared/types/time-block.types'
 import {
   DragEndEvent,
   KeyboardSensor,

@@ -1,4 +1,4 @@
-import { ITask } from '../types/task.types'
+import type { ITask } from '../types/task.types'
 import dayjs from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
 import weekOfYear from 'dayjs/plugin/weekOfYear'

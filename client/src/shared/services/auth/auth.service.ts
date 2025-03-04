@@ -1,5 +1,5 @@
 import { baseAxios } from '../../api/interseptors'
-import { IAuthForm, IAuthresponse } from '../../types/auth.types'
+import type { IAuthForm, IAuthresponse } from '../../types/auth.types'
 import {
   removeTokenFromStorage,
   saveTokenToStorage,

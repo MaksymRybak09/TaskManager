@@ -1,6 +1,6 @@
 import { useProfile } from '@/shared/hooks/users/use-profile'
 import { userService } from '@/shared/services/user/user.service'
-import { UserForm } from '@/shared/types/user.types'
+import type { UserForm } from '@/shared/types/user.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'

@@ -1,5 +1,8 @@
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
-import { ITimeBlock, TimeBlockFormState } from '@/shared/types/time-block.types'
+import type {
+  ITimeBlock,
+  TimeBlockFormState,
+} from '@/shared/types/time-block.types'
 import { useFormContext } from 'react-hook-form'
 
 type UpdateTimeBlockButtonProps = {

@@ -1,5 +1,5 @@
 import { authAxios } from '@/shared/api/interseptors'
-import { ITask, TaskFormState } from '@/shared/types/task.types'
+import type { ITask, TaskFormState } from '@/shared/types/task.types'
 
 class TaskService {
   private baseURL = 'tasks'

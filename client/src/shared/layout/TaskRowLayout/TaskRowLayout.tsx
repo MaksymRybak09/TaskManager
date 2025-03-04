@@ -1,5 +1,5 @@
 import styles from '@/shared/styles/task-table-layout.module.scss'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 type TaskRowLayoutProps = {
   taskInput: ReactNode[] | ReactNode

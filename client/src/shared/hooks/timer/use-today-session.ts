@@ -1,5 +1,5 @@
 import { pomodoroService } from '@/shared/services/pomodoro/pomodoro.service'
-import { IPomodoroRound } from '@/shared/types/pomodoro.types'
+import type { IPomodoroRound } from '@/shared/types/pomodoro.types'
 import { useQuery } from '@tanstack/react-query'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 

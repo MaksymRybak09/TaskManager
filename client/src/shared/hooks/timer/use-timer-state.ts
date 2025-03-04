@@ -1,4 +1,4 @@
-import { IPomodoroRound } from '@/shared/types/pomodoro.types'
+import type { IPomodoroRound } from '@/shared/types/pomodoro.types'
 import { useEffect, useState } from 'react'
 import { useLoadSettings } from '../users/use-load-settings'
 

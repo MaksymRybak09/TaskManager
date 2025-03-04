@@ -1,5 +1,5 @@
 import { timeBlockService } from '@/shared/services/time-block/time-block.service'
-import { TimeBlockFormState } from '@/shared/types/time-block.types'
+import type { TimeBlockFormState } from '@/shared/types/time-block.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export const useUpdateTimeBlock = (key?: string) => {

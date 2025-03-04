@@ -1,6 +1,6 @@
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
 import { addTask } from '@/shared/helpers/add-task'
-import { ITask } from '@/shared/types/task.types'
+import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
 
 type ListAddRowInputProps = {

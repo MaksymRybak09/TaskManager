@@ -1,6 +1,6 @@
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
 import { useDeleteTimeBlock } from '@/shared/hooks/time-block/use-delete-time-block'
-import { ITimeBlock } from '@/shared/types/time-block.types'
+import type { ITimeBlock } from '@/shared/types/time-block.types'
 
 type DeleteTimeBlockButtonProps = {
   item: ITimeBlock

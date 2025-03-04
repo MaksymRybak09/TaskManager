@@ -1,5 +1,5 @@
 import Button from '@/shared/components/button/Button'
-import { IPomodoroRound } from '@/shared/types/pomodoro.types'
+import type { IPomodoroRound } from '@/shared/types/pomodoro.types'
 import styles from './pomodoro-rounds.module.scss'
 
 type PomodoroRoundProps = {

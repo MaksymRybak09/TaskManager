@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect } from 'react'
 import { UseFormWatch } from 'react-hook-form'
-import { TaskFormState } from '../../types/task.types'
+import type { TaskFormState } from '../../types/task.types'
 import { useCreateTask } from './use-create-task'
 import { useUpdateTask } from './use-update-task'
 
