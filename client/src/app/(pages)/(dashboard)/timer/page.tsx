@@ -1,14 +1,10 @@
-'use client'
-
-import { TimeBlockPage } from '@/pages/TimeBlockPage'
+import { TimerPage } from '@/pages/TimerPage'
 import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants'
 import { Metadata } from 'next'
 
 export const metadate: Metadata = {
-  title: 'Time block',
+  title: 'Timer',
   ...NO_INDEX_PAGE,
 }
 
-export default function Page() {
-  return <TimeBlockPage />
-}
+export default TimerPage

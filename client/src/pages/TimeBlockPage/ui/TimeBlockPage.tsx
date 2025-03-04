@@ -1,13 +1,12 @@
-import { Sidebar } from '@/entity/Sidebar'
 import { TimeBlockBoard } from '@/features/TimeBlockBoard'
-import HomeLayout from '@/shared/layout/HomeLayout/HomeLayout'
-import { HeaderWithLogOut } from '@/widgets/HeaderWithLogOut'
+import Heading from '@/shared/components/heading/Heading'
 
 function TimeBlockPage() {
   return (
-    <HomeLayout header={<HeaderWithLogOut />} sidebar={<Sidebar />}>
+    <>
+      <Heading title="Time block" />
       <TimeBlockBoard />
-    </HomeLayout>
+    </>
   )
 }
 

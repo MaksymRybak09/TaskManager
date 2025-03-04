@@ -1,13 +1,12 @@
-import { Sidebar } from '@/entity/Sidebar'
 import { TaskBoard } from '@/features/TaskBoard'
-import HomeLayout from '@/shared/layout/HomeLayout/HomeLayout'
-import { HeaderWithLogOut } from '@/widgets/HeaderWithLogOut'
+import Heading from '@/shared/components/heading/Heading'
 
 function TasksPage() {
   return (
-    <HomeLayout header={<HeaderWithLogOut />} sidebar={<Sidebar />}>
+    <>
+      <Heading title="Tasks" />
       <TaskBoard />
-    </HomeLayout>
+    </>
   )
 }
 
