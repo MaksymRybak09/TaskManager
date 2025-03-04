@@ -1,3 +1,5 @@
+'use client'
+
 import { PomodoroRounds } from '@/entity/PomodoroRounds'
 import Button from '@/shared/components/button/Button'
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
