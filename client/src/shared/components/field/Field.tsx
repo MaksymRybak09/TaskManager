@@ -1,4 +1,3 @@
-import { useId } from 'react'
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 import styles from './field.module.scss'
 
@@ -11,14 +10,13 @@ type FieldProps = {
 }
 
 function Field(props: FieldProps) {
-  const id = useId()
   return (
     <div className={styles.formField}>
-      <label htmlFor={id} className={styles.label}>
+      <label htmlFor={props.label} className={styles.label}>
         {props.label}
       </label>
       <input
-        id={id}
+        id={props.label}
         type={props.type ?? 'text'}
         placeholder={props.placeholder ?? ''}
         className={styles.input}
