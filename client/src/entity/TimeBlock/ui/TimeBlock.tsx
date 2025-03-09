@@ -1,5 +1,6 @@
 'use client'
 
+import { calcHeight } from '@/shared/helpers/calc-height'
 import { useTimeBlockSortable } from '@/shared/hooks/time-block/use-time-block-sortable'
 import type { ITimeBlock } from '@/shared/types/time-block.types'
 import { ReactNode } from 'react'
@@ -21,7 +22,7 @@ function TimeBlock(props: TimeBlockProps) {
         className={timeBlockStyles['time-block']}
         style={{
           backgroundColor: props.item.color,
-          height: `${props.item.duration < 80 ? 80 : props.item.duration}px`,
+          height: `${calcHeight(props.item.duration)}px`,
         }}
       >
         <div
