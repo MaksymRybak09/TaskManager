@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { FormProvider, useForm } from 'react-hook-form'
 import styles from './time-block-board.module.scss'
 import { timeBlockFormSchema } from '../config/time-block-form.config'
+import { TIME_BLOCK_DEFAUL_COLOR } from '@/shared/constants/time-block-colors'
 
 function TimeBlockBoard() {
   const formMethods = useForm<TimeBlockFormState>({
@@ -15,7 +16,7 @@ function TimeBlockBoard() {
       id: undefined,
       name: undefined,
       duration: 10,
-      color: '#f3f3f3',
+      color: TIME_BLOCK_DEFAUL_COLOR.value,
     },
   })
 

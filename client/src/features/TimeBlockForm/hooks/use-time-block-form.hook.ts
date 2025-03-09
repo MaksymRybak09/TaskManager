@@ -1,3 +1,4 @@
+import { TIME_BLOCK_DEFAUL_COLOR } from '@/shared/constants/time-block-colors'
 import { useCreateTimeBlock } from '@/shared/hooks/time-block/use-create-time-block'
 import { useUpdateTimeBlock } from '@/shared/hooks/time-block/use-update-time-block'
 import type { TimeBlockFormState } from '@/shared/types/time-block.types'
@@ -34,7 +35,7 @@ export const useTimeBlockForm = () => {
     reset({
       id: undefined,
       name: '',
-      color: '#f3f3f3',
+      color: TIME_BLOCK_DEFAUL_COLOR.value,
       duration: 10,
       order: 1,
     })

@@ -1,9 +1,7 @@
+import { capitalizeFirstLetter } from '@/shared/helpers/capitalized-first-letter'
 import { useTaskDebounce } from '@/shared/hooks/tasks/use-task-debounce'
-import type {
-  ITask,
-  PriorityOption,
-  TaskFormState,
-} from '@/shared/types/task.types'
+import type { SelectOptions } from '@/shared/types/select.types'
+import type { ITask, TaskFormState } from '@/shared/types/task.types'
 import { useForm } from 'react-hook-form'
 
 export const useTaskRow = (item: ITask, priorities: string[]) => {
@@ -18,9 +16,9 @@ export const useTaskRow = (item: ITask, priorities: string[]) => {
 
   useTaskDebounce({ watch, itemID: item.id })
 
-  const priorityOptions: PriorityOption[] = priorities.map((item) => ({
+  const priorityOptions: SelectOptions = priorities.map((item) => ({
     value: item,
-    label: item.toLowerCase(),
+    label: capitalizeFirstLetter(item.toLowerCase()),
   }))
 
   return { register, control, priorityOptions }

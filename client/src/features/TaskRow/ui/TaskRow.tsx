@@ -1,6 +1,5 @@
 import { DatePicker } from '@/features/DatePicker'
 import { DeleteTaskButton } from '@/features/DeleteTaskButton'
-import { PrioritySelect } from '@/features/PrioritySelect'
 import Checkbox from '@/shared/components/checkbox/Checkbox'
 import { TransparentField } from '@/shared/components/transparentField/TransparentField'
 import TaskRowLayout from '@/shared/layout/TaskRowLayout/TaskRowLayout'
@@ -8,6 +7,8 @@ import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTaskRow } from '../hooks/use-task-row.hook'
+import Select from '@/shared/components/select/Select'
+import { getPriority } from '@/shared/helpers/get-priority'
 
 type ListRowProps = {
   item: ITask
@@ -48,10 +49,10 @@ function TaskRow(props: ListRowProps) {
           control={control}
           name="priority"
           render={({ field: { value, onChange } }) => (
-            <PrioritySelect
+            <Select
+              value={getPriority(priorityOptions, value ?? 'LOW')}
               data={priorityOptions}
               onChange={onChange}
-              value={value || ''}
             />
           )}
         />
