@@ -14,7 +14,6 @@ import { TimeBlock } from '@prisma/client'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { TimeBlockDTO } from './dto/time-block.dto'
-import { UpdateOrderDTO } from './dto/update-order.dto'
 import { TimeBlockService } from './time-block.service'
 
 @ApiTags('Time blocks')
@@ -56,11 +55,10 @@ export class TimeBlockController {
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @UsePipes(new ValidationPipe())
   @Put('update-order')
   @Auth()
-  updateOrder(@Body() updateOrderDto: UpdateOrderDTO): Promise<TimeBlock[]> {
-    return this.timeBlockService.updateOrder(updateOrderDto.ids)
+  updateOrder(@Body() ids: string[]): Promise<TimeBlock[]> {
+    return this.timeBlockService.updateOrder(ids)
   }
 
   @ApiResponse({
