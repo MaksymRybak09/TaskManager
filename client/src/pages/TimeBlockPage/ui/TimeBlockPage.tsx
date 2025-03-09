@@ -4,7 +4,7 @@ import Heading from '@/shared/components/heading/Heading'
 function TimeBlockPage() {
   return (
     <>
-      <Heading title="Time block" />
+      <Heading title="Time blocks" />
       <TimeBlockBoard />
     </>
   )
