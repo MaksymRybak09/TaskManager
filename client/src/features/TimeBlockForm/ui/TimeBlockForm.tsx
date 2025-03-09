@@ -1,5 +1,3 @@
-'use client'
-
 import { PrioritySelect } from '@/features/PrioritySelect'
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
@@ -31,6 +29,7 @@ function TimeBlockForm() {
       <Field
         label="Duration:"
         placeholder="Enter duration"
+        type="number"
         register={{
           ...register('duration', { valueAsNumber: true }),
         }}
