@@ -16,13 +16,7 @@ function TimeBlock(props: TimeBlockProps) {
   )
 
   return (
-    <div
-      ref={setNodeRef}
-      style={styles}
-      {...attributes}
-      {...listeners}
-      aria-describedby="time-block"
-    >
+    <div ref={setNodeRef} style={styles} aria-describedby="time-block">
       <div
         className={timeBlockStyles['time-block']}
         style={{
@@ -30,6 +24,13 @@ function TimeBlock(props: TimeBlockProps) {
           height: `${props.item.duration < 80 ? 80 : props.item.duration}px`,
         }}
       >
+        <div
+          {...attributes}
+          {...listeners}
+          className={timeBlockStyles['drag-handle']}
+        >
+          🟰 Drag me
+        </div>
         <div>
           {props.item.name}
           <p>{props.item.duration}</p>

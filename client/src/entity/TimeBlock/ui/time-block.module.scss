@@ -1,3 +1,14 @@
 .time-block {
   min-width: 25rem;
 }
+
+.drag-handle {
+  cursor: grab;
+  user-select: none;
+  padding: 4px;
+  font-weight: bold;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
