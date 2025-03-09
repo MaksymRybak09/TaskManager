@@ -22,7 +22,6 @@ export class TimeBlockService {
     return this.prisma.timeBlock.create({
       data: {
         ...dto,
-        color: dto.color || '#FFFFFF',
         user: {
           connect: {
             id: userID,
