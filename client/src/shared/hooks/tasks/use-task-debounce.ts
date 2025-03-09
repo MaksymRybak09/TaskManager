@@ -1,28 +1,28 @@
 import debounce from 'lodash.debounce'
 import { useCallback, useEffect } from 'react'
 import { UseFormWatch } from 'react-hook-form'
-import type { TaskFormState } from '../../types/task.types'
+import type { TaskForm } from '../../types/task.types'
 import { useCreateTask } from './use-create-task'
 import { useUpdateTask } from './use-update-task'
 
-interface IUseTaskdebounce {
-  watch: UseFormWatch<TaskFormState>
+interface IUseTaskDebounce {
+  watch: UseFormWatch<TaskForm>
   itemID: string
 }
 
-export const useTaskDebounce = (props: IUseTaskdebounce) => {
+export const useTaskDebounce = (props: IUseTaskDebounce) => {
   const { createTask } = useCreateTask()
   const { updateTask } = useUpdateTask()
 
   const debouncedCreateTask = useCallback(
-    debounce((formData: TaskFormState) => {
+    debounce((formData: TaskForm) => {
       createTask(formData)
     }, 444),
     [],
   )
 
   const debouncedUpdateTask = useCallback(
-    debounce((formData: TaskFormState) => {
+    debounce((formData: TaskForm) => {
       updateTask({ id: props.itemID, data: formData })
     }, 444),
     [],

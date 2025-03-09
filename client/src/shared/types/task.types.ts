@@ -13,7 +13,7 @@ export interface ITask {
   isCompleted: boolean
 }
 
-export type TaskFormState = Partial<Omit<ITask, 'id' | 'updatedAt'>>
+export type TaskForm = Partial<Omit<ITask, 'id' | 'updatedAt'>>
 
 export type PriorityOption = {
   label: string

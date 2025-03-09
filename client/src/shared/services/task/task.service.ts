@@ -1,5 +1,5 @@
 import { authAxios } from '@/shared/api/interseptors'
-import type { ITask, TaskFormState } from '@/shared/types/task.types'
+import type { ITask, TaskForm } from '@/shared/types/task.types'
 
 class TaskService {
   private baseURL = 'tasks'
@@ -9,12 +9,12 @@ class TaskService {
     return response.data
   }
 
-  async createTask(data: TaskFormState) {
+  async createTask(data: TaskForm) {
     const response = await authAxios.post(this.baseURL, data)
     return response.data
   }
 
-  async updateTask(id: string, data: TaskFormState) {
+  async updateTask(id: string, data: TaskForm) {
     const response = await authAxios.put(`${this.baseURL}/${id}`, data)
     return response.data
   }

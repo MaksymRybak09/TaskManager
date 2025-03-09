@@ -1,13 +1,9 @@
 import { useTaskDebounce } from '@/shared/hooks/tasks/use-task-debounce'
-import type {
-  ITask,
-  PriorityOption,
-  TaskFormState,
-} from '@/shared/types/task.types'
+import type { ITask, PriorityOption, TaskForm } from '@/shared/types/task.types'
 import { useForm } from 'react-hook-form'
 
 export const useTaskRow = (item: ITask, priorities: string[]) => {
-  const { register, control, watch } = useForm<TaskFormState>({
+  const { register, control, watch } = useForm<TaskForm>({
     defaultValues: {
       name: item.name,
       isCompleted: item.isCompleted,
