@@ -1,4 +1,7 @@
-import type { PriorityOption } from '../types/task.types'
+import { SelectOptions } from '../types/select.types'
+import { capitalizeFirstLetter } from './capitalized-first-letter'
 
-export const getPriority = (data: PriorityOption[], value: string) =>
-  data.find((item) => item.value === value)?.value
+export const getPriority = (data: SelectOptions, value: string) =>
+  capitalizeFirstLetter(
+    data.find((item) => item.value === value)?.label ?? 'low',
+  )
