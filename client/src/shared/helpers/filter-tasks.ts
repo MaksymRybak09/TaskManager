@@ -28,13 +28,6 @@ const taskFilters: any = {
         dayjs(item.createdAt).isSameOrBefore(FILTERS['on-this-week']) &&
         !item.isCompleted,
     ),
-  ['on-next-week']: (tasks: ITask[] | undefined) =>
-    tasks?.filter(
-      (item) =>
-        dayjs(item.createdAt).isAfter(FILTERS['on-this-week']) &&
-        dayjs(item.createdAt).isBefore(FILTERS['later']) &&
-        !item.isCompleted,
-    ),
   later: (tasks: ITask[] | undefined) =>
     tasks?.filter(
       (item) =>

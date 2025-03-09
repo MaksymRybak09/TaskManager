@@ -12,10 +12,6 @@ export const COLUMNS = [
     value: 'on-this-week',
   },
   {
-    label: 'On next week',
-    value: 'on-next-week',
-  },
-  {
     label: 'Later',
     value: 'later',
   },
