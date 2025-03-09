@@ -4,7 +4,7 @@ import { PomodoroRounds } from '@/entity/PomodoroRounds'
 import Button from '@/shared/components/button/Button'
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
 import { formatTime } from '@/shared/helpers/format-time'
-import { useTimer } from '../hooks/use-timer.hook'
+import { useTimer } from '../hooks/use-timer'
 import styles from './timer.module.scss'
 
 function Timer() {

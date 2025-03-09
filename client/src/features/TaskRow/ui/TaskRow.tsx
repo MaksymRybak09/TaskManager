@@ -6,7 +6,7 @@ import TaskRowLayout from '@/shared/layout/TaskRowLayout/TaskRowLayout'
 import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
-import { useTaskRow } from '../hooks/use-task-row.hook'
+import { useTaskRow } from '../hooks/use-task-row'
 import Select from '@/shared/components/select/Select'
 import { getPriority } from '@/shared/helpers/get-priority'
 

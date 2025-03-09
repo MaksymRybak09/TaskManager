@@ -4,7 +4,7 @@ import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import Heading from '@/shared/components/heading/Heading'
 import { authService } from '@/shared/services/auth/auth.service'
-import { useRegisterLogInForm } from '../hooks/use-register-login-form.hook'
+import { useRegisterLogInForm } from '../hooks/use-register-login-form'
 import styles from './register-login-form.module.scss'
 
 function RegisterForm() {

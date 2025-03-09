@@ -4,7 +4,7 @@ import TransparentButton from '@/shared/components/transparentButton/Transparent
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { DayPicker } from 'react-day-picker'
-import { useDatePicker } from '../hooks/use-date-picker.hook'
+import { useDatePicker } from '../hooks/use-date-picker'
 import styles from './date-picker.module.scss'
 
 dayjs.extend(localizedFormat)

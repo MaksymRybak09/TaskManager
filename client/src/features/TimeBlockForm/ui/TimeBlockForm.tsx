@@ -1,7 +1,7 @@
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import { Controller } from 'react-hook-form'
-import { useTimeBlockForm } from '../hooks/use-time-block-form.hook'
+import { useTimeBlockForm } from '../hooks/use-time-block-form'
 import styles from './time-block-form.module.scss'
 import Select from '@/shared/components/select/Select'
 import {
