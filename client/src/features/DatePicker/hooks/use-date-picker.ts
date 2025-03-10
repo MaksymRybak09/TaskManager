@@ -5,11 +5,10 @@ export const useDatePicker = (onChange: (value: string) => void) => {
   const [selected, setSelected] = useState<Date>()
   const { isShow, setIsShow, ref } = useOutside(false)
 
-  const handleDaySelect = (data: any) => {
-    const ISODate = data?.toISOString()
-
-    setSelected(ISODate)
-    if (ISODate) {
+  const handleDaySelect = (date: Date | undefined) => {
+    if (date) {
+      const ISODate = date.toISOString()
+      setSelected(date)
       onChange(ISODate)
       setIsShow(false)
     } else {
