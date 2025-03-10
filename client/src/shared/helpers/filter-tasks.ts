@@ -8,7 +8,9 @@ import { hasValidDate } from './has-valid-date'
 dayjs.extend(isoWeek)
 dayjs.extend(weekOfYear)
 
-const taskFilters: any = {
+type taskFilterFunction = (tasks: ITask[] | undefined) => ITask[] | undefined
+
+const taskFilters: Record<string, taskFilterFunction> = {
   today: (tasks: ITask[] | undefined) =>
     tasks?.filter(
       (item) =>
