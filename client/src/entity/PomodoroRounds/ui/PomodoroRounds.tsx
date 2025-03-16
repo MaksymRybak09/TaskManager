@@ -1,22 +1,31 @@
 import Button from '@/shared/components/button/Button'
-import type { IPomodoroRound } from '@/shared/types/pomodoro.types'
 import styles from './pomodoro-rounds.module.scss'
+import { ReactNode } from 'react'
 
 type PomodoroRoundProps = {
-  rounds: IPomodoroRound[] | undefined
+  rounds: number
+  activeRound: number
   nextRoundHandler: () => void
   prevRoundHandler: () => void
-  activeRound: IPomodoroRound | undefined
 }
 
 function PomodoroRounds(props: PomodoroRoundProps) {
-  const isCanPrevRound = props.rounds
-    ? props.rounds.some((round) => round.isCompleted)
-    : false
+  const isCanPrevRound = props.activeRound !== 1
 
-  const isCanNextRound = props.rounds
-    ? !props.rounds[props.rounds.length - 1].isCompleted
-    : false
+  const isCanNextRound = props.activeRound <= props.rounds
+
+  const rounds: ReactNode[] = []
+
+  for (let i = 1; i <= props.rounds; i++) {
+    rounds.push(
+      <div
+        className={
+          i < props.activeRound ? styles['round__completed'] : styles.round
+        }
+        key={i}
+      ></div>,
+    )
+  }
 
   return (
     <div className={styles['pomodoro']}>
@@ -26,17 +35,7 @@ function PomodoroRounds(props: PomodoroRoundProps) {
       >
         Previos
       </Button>
-      <div className={styles.rounds}>
-        {props.rounds &&
-          props.rounds.map((round, index) => (
-            <div
-              className={
-                round.isCompleted ? styles['round__completed'] : styles.round
-              }
-              key={index}
-            ></div>
-          ))}
-      </div>
+      <div className={styles.rounds}>{rounds}</div>
       <Button
         disabled={!isCanNextRound}
         onClick={() => (isCanNextRound ? props.nextRoundHandler() : false)}
