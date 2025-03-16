@@ -1,6 +1,7 @@
 'use client'
 
 import { PomodoroRounds } from '@/entity/PomodoroRounds'
+import Badge from '@/shared/components/badge/Badge'
 import Button from '@/shared/components/button/Button'
 import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
 import { formatTime } from '@/shared/helpers/format-time'
@@ -9,65 +10,69 @@ import styles from './timer.module.scss'
 
 function Timer() {
   const {
-    session,
-    isSessionLoading,
-    createSession,
-    isCreateSessionPending,
-    deleteSession,
-    isDeleteSessionPending,
-    secondsLeft,
-    rounds,
-    activeRound,
-    isUpdateRoundPending,
+    timer,
+    isTimerPending,
+    createTimer,
+    isCreateTimerPending,
+    deleteTimer,
+    isDeleteTimerPending,
+    secondsLeftState,
+    isRunning,
+    isBreakTime,
     nextRoundHandler,
     prevRoundHandler,
     pauseHandler,
     playHandler,
-    isRunning,
-    setIsRunning,
   } = useTimer()
+
+  if (isTimerPending) return <div>Loading...</div>
+
+  if (!timer) {
+    return (
+      <Button onClick={() => createTimer()} disabled={isCreateTimerPending}>
+        Create timer
+      </Button>
+    )
+  }
+
+  if (timer?.isCompleted) {
+    return (
+      <>
+        <div>Timer has ended</div>
+        <Button
+          onClick={() => {
+            deleteTimer(timer?.id ?? '')
+            createTimer()
+          }}
+          disabled={isCreateTimerPending}
+        >
+          Refresh timer
+        </Button>
+      </>
+    )
+  }
 
   return (
     <div className={styles.timer}>
-      {!isSessionLoading && (
-        <div className={styles.time}>{formatTime(secondsLeft)}</div>
-      )}
-      {isSessionLoading ? (
-        <div>Loading...</div>
-      ) : session ? (
-        <>
-          <PomodoroRounds
-            rounds={rounds}
-            activeRound={activeRound}
-            nextRoundHandler={nextRoundHandler}
-            prevRoundHandler={prevRoundHandler}
-          />
-          <div className={styles['timer__buttons']}>
-            <Button
-              onClick={isRunning ? pauseHandler : playHandler}
-              disabled={isUpdateRoundPending}
-            >
-              {isRunning ? 'Pause' : 'Play'}
-            </Button>
-            <TransparentButton
-              onClick={() => {
-                setIsRunning(true)
-                deleteSession(session?.id ?? '')
-              }}
-              disabled={isDeleteSessionPending}
-            >
-              Delete session
-            </TransparentButton>
-          </div>
-        </>
-      ) : (
-        <Button
-          onClick={() => createSession()}
-          disabled={isCreateSessionPending}
-        >
-          Create session
+      <div className={styles.time}>{formatTime(secondsLeftState)}</div>
+      <Badge>{isBreakTime ? 'Rest' : 'Work'}</Badge>
+      <PomodoroRounds
+        rounds={timer.rounds}
+        activeRound={timer.currentRound}
+        nextRoundHandler={nextRoundHandler}
+        prevRoundHandler={prevRoundHandler}
+      />
+      <div className={styles['timer__buttons']}>
+        <Button onClick={isRunning ? pauseHandler : playHandler}>
+          {isRunning ? 'Pause' : 'Play'}
         </Button>
-      )}
+        <TransparentButton
+          onClick={() => deleteTimer(timer?.id ?? '')}
+          disabled={isDeleteTimerPending}
+        >
+          Delete timer
+        </TransparentButton>
+      </div>
     </div>
   )
 }

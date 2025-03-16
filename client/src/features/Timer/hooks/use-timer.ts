@@ -1,50 +1,50 @@
-import { useCreateSession } from '@/shared/hooks/timer/use-create-session'
-import { useDeleteSession } from '@/shared/hooks/timer/use-delete-session'
+import { useCreateTimer } from '@/shared/hooks/timer/use-create-timer'
+import { useDeleteTimer } from '@/shared/hooks/timer/use-delete-timer'
+import { useGetTimer } from '@/shared/hooks/timer/use-get-timer'
 import { useTimerActions } from '@/shared/hooks/timer/use-timer-actions'
 import { useTimerState } from '@/shared/hooks/timer/use-timer-state'
-import { useTodaySession } from '@/shared/hooks/timer/use-today-session'
-import { useUpdateRound } from '@/shared/hooks/timer/use-update-round'
 
 export const useTimer = () => {
-  const timerState = useTimerState()
-  const todaySession = useTodaySession({
-    setActiveRound: timerState.setActiveRound,
-    setSecondsLeft: timerState.setSecondsLeft,
-    workInterval: timerState.workInterval,
-  })
+  const { timer, isTimerPending } = useGetTimer()
+  const { createTimer, isCreateTimerPending } = useCreateTimer()
+  const { deleteTimer, isDeleteTimerPending } = useDeleteTimer()
 
-  const rounds = todaySession.session?.rounds
-  const timerActions = useTimerActions({
-    rounds,
-    activeRound: timerState.activeRound,
-    setActiveRound: timerState.setActiveRound,
-    secondsLeft: timerState.secondsLeft,
-    setSecondsLeft: timerState.setSecondsLeft,
-    setIsRunning: timerState.setIsRunning,
-  })
-
-  const { createSession, isCreateSessionPending } = useCreateSession()
-  const { isUpdateRoundPending } = useUpdateRound()
-  const { deleteSession, isDeleteSessionPending } = useDeleteSession(() =>
-    timerState.setSecondsLeft(timerState.workInterval * 60),
+  const {
+    secondsLeftState,
+    isRunning,
+    setIsRunning,
+    setActiveRound,
+    isBreakTime,
+  } = useTimerState(
+    timer?.id ?? '',
+    timer?.isWorkingTime ?? true,
+    timer?.currentRound ?? 1,
+    timer?.secondsLeft ?? 0,
+    timer?.rounds ?? 7,
   )
 
+  const { nextRoundHandler, prevRoundHandler, pauseHandler, playHandler } =
+    useTimerActions({
+      id: timer?.id ?? '',
+      currentRound: timer?.currentRound ?? 1,
+      setActiveRound,
+      setIsRunning,
+      secondsLeftState,
+    })
+
   return {
-    session: todaySession.session,
-    isSessionLoading: todaySession.isSessionLoading,
-    createSession,
-    isCreateSessionPending,
-    deleteSession,
-    isDeleteSessionPending,
-    secondsLeft: timerState.secondsLeft,
-    rounds,
-    isUpdateRoundPending,
-    activeRound: timerState.activeRound,
-    nextRoundHandler: timerActions.nextRoundHandler,
-    prevRoundHandler: timerActions.prevRoundHandler,
-    pauseHandler: timerActions.pauseHandler,
-    playHandler: timerActions.playHandler,
-    isRunning: timerState.isRunning,
-    setIsRunning: timerState.setIsRunning,
+    timer,
+    isTimerPending,
+    createTimer,
+    isCreateTimerPending,
+    deleteTimer,
+    isDeleteTimerPending,
+    secondsLeftState,
+    isRunning,
+    isBreakTime,
+    nextRoundHandler,
+    prevRoundHandler,
+    pauseHandler,
+    playHandler,
   }
 }
