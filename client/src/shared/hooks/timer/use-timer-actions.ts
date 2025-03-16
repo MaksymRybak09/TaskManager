@@ -1,66 +1,47 @@
-import type { IPomodoroRound } from '@/shared/types/pomodoro.types'
 import { Dispatch, SetStateAction } from 'react'
-import { useLoadSettings } from '../users/use-load-settings'
-import { useUpdateRound } from './use-update-round'
+import { useUpdateTimer } from './use-update-timer'
 
-interface ITimerActions {
-  secondsLeft: number
-  setSecondsLeft: Dispatch<SetStateAction<number>>
-  activeRound: IPomodoroRound | undefined
-  setActiveRound: Dispatch<SetStateAction<IPomodoroRound | undefined>>
+interface ITimeActions {
+  id: string
+  currentRound: number
   setIsRunning: Dispatch<SetStateAction<boolean>>
-  rounds: IPomodoroRound[] | undefined
+  setActiveRound: Dispatch<SetStateAction<number>>
+  secondsLeftState: number
 }
 
-export const useTimerActions = (params: ITimerActions) => {
-  const { workInterval } = useLoadSettings()
-  const { updateRound } = useUpdateRound()
-
-  const activeRoundID = params.activeRound?.id
+export const useTimerActions = ({
+  id,
+  currentRound,
+  setIsRunning,
+  setActiveRound,
+  secondsLeftState,
+}: ITimeActions) => {
+  const { updateTimer } = useUpdateTimer()
 
   const pauseHandler = () => {
-    params.setIsRunning(false)
-
-    if (!activeRoundID) return
-    updateRound({
-      id: activeRoundID,
-      data: {
-        totalSeconds: params.secondsLeft,
-        isCompleted: Math.floor(params.secondsLeft / 60) >= workInterval,
-      },
-    })
+    setIsRunning(false)
+    updateTimer({ id, dto: { secondsLeft: secondsLeftState } })
   }
 
-  const playHandler = () => params.setIsRunning(true)
+  const playHandler = () => setIsRunning(true)
 
   const nextRoundHandler = () => {
-    if (!activeRoundID) return
-
-    updateRound({
-      id: activeRoundID,
-      data: {
-        isCompleted: true,
-        totalSeconds: workInterval * 60,
-      },
-    })
+    const nextRound = currentRound + 1
+    setActiveRound(nextRound)
+    updateTimer({ id, dto: { currentRound: nextRound } })
   }
 
   const prevRoundHandler = () => {
-    const lastCompletedRound = params.rounds?.findLast(
-      (round) => round.isCompleted,
-    )
-    if (!lastCompletedRound?.id) return
-
-    updateRound({
-      id: lastCompletedRound.id,
-      data: {
-        isCompleted: false,
-        totalSeconds: 0,
-      },
-    })
-
-    params.setActiveRound(lastCompletedRound)
+    if (currentRound === 1) return
+    const prevRound = currentRound - 1
+    setActiveRound(prevRound)
+    updateTimer({ id, dto: { currentRound: prevRound } })
   }
 
-  return { pauseHandler, playHandler, nextRoundHandler, prevRoundHandler }
+  return {
+    pauseHandler,
+    playHandler,
+    nextRoundHandler,
+    prevRoundHandler,
+  }
 }

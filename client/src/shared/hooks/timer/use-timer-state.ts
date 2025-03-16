@@ -1,46 +1,82 @@
-import type { IPomodoroRound } from '@/shared/types/pomodoro.types'
 import { useEffect, useState } from 'react'
 import { useLoadSettings } from '../users/use-load-settings'
+import { useUpdateTimer } from './use-update-timer'
 
-export const useTimerState = () => {
+export const useTimerState = (
+  id: string,
+  isWorkingTime: boolean,
+  currentRound: number,
+  secondsLeft: number,
+  totalRounds: number,
+) => {
   const { workInterval, breakInterval } = useLoadSettings()
+  const { updateTimer } = useUpdateTimer()
 
   const [isRunning, setIsRunning] = useState(false)
-  const [isBeakTime, setIsBeakTime] = useState(false)
-  const [secondsLeft, setSecondsLeft] = useState(workInterval * 60)
-  const [activeRound, setActiveRound] = useState<IPomodoroRound>()
+  const [secondsLeftState, setSecondsLeft] = useState(secondsLeft)
+  const [activeRound, setActiveRound] = useState(currentRound)
+  const [isBreakTime, setIsBreakTime] = useState(!isWorkingTime)
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null
-
-    if (isRunning) {
-      interval = setInterval(
-        () => setSecondsLeft((secondsLeft) => secondsLeft - 1),
-        1000,
-      )
-    } else if (!isRunning && secondsLeft !== 0 && interval) {
-      clearInterval(interval)
-    }
-
-    return () => {
-      if (interval) clearInterval(interval)
-    }
-  }, [isRunning, secondsLeft, workInterval, activeRound])
+    setSecondsLeft(secondsLeft)
+    setActiveRound(currentRound)
+    setIsBreakTime(!isWorkingTime)
+  }, [secondsLeft, currentRound, isWorkingTime])
 
   useEffect(() => {
-    if (secondsLeft > 0) return
-    setIsBeakTime(!isBeakTime)
-    setSecondsLeft((isBeakTime ? workInterval : breakInterval) * 60)
-  }, [secondsLeft, isBeakTime, workInterval, breakInterval])
+    if (!isRunning) return
+
+    const interval = setInterval(() => {
+      setSecondsLeft((prev) => prev - 1)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [isRunning])
+
+  useEffect(() => {
+    if (secondsLeftState > 0) return
+
+    if (activeRound >= totalRounds && isBreakTime) {
+      setIsRunning(false)
+      updateTimer({ id, dto: { isCompleted: true } })
+      return
+    }
+
+    const nextIsBreakTime = !isBreakTime
+    const nextRound = !nextIsBreakTime ? activeRound + 1 : activeRound
+    const newTime = (nextIsBreakTime ? breakInterval : workInterval) * 60
+
+    setIsBreakTime(nextIsBreakTime)
+    setActiveRound(nextRound)
+    setSecondsLeft(newTime)
+
+    if (id) {
+      updateTimer({
+        id,
+        dto: {
+          isWorkingTime: !nextIsBreakTime,
+          currentRound: nextRound,
+          secondsLeft: newTime,
+        },
+      })
+    }
+  }, [
+    secondsLeftState,
+    activeRound,
+    totalRounds,
+    breakInterval,
+    workInterval,
+    isBreakTime,
+    id,
+    updateTimer,
+  ])
 
   return {
-    workInterval,
-    breakInterval,
     activeRound,
     setActiveRound,
-    secondsLeft,
-    setSecondsLeft,
+    secondsLeftState,
     isRunning,
     setIsRunning,
+    isBreakTime,
   }
 }
