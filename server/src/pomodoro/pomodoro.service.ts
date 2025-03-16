@@ -30,6 +30,7 @@ export class PomodoroService {
 
     return this.prisma.pomodoroTimer.create({
       data: {
+        secondsLeft: user.workInterval * 60,
         currentRound: 1,
         isWorkingTime: true,
         isCompleted: false,
