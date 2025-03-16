@@ -61,6 +61,7 @@ model PomodoroTimer {
   id            String   @id @default(cuid())
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
+  secondsLeft   Int      @map("seconds_left")
   rounds        Int      @default(7) @map("rounds")
   currentRound  Int      @default(1) @map("current_round")
   isWorkingTime Boolean  @default(false) @map("is_working_time")
