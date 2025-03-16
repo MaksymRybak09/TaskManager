@@ -1,23 +1,14 @@
-export interface IPomodoroRound {
+export interface IPomodoroTimer {
   id: string
   createdAt?: string
   updatedAt?: string
+  secondsLeft: number
+  rounds: number
+  currentRound: number
+  isWorkingTime: boolean
   isCompleted?: boolean
-  totalSeconds: number
 }
 
-export interface IPomodoroSession {
-  id: string
-  createdAt?: string
-  updatedAt?: string
-  isCompleted?: boolean
-  rounds?: IPomodoroRound[]
-}
-
-export type PomodoroSessionState = Partial<
-  Omit<IPomodoroSession, 'id' | 'createdAt' | 'updatedAt'>
->
-
-export type PomodoroRoundState = Partial<
-  Omit<IPomodoroRound, 'id' | 'createdAt' | 'updatedAt'>
+export type PomodoroTimerState = Partial<
+  Omit<IPomodoroTimer, 'id' | 'createdAt' | 'updatedAt'>
 >
