@@ -1,36 +1,34 @@
 import { authAxios } from '@/shared/api/interseptors'
 import type {
-  IPomodoroSession,
-  PomodoroSessionState,
+  IPomodoroTimer,
+  PomodoroTimerState,
 } from '@/shared/types/pomodoro.types'
 
 class PomodoroService {
   private baseURL = 'timer'
 
-  async getTodaySession() {
-    const response = await authAxios.get<IPomodoroSession>(
-      `${this.baseURL}/today`,
+  async getTimer() {
+    const response = await authAxios.get<IPomodoroTimer>(`${this.baseURL}`)
+    return response.data
+  }
+
+  async createTimer() {
+    const response = await authAxios.post<IPomodoroTimer>(this.baseURL)
+    return response.data
+  }
+
+  async updateTimer(id: string, data: PomodoroTimerState) {
+    const response = await authAxios.put<IPomodoroTimer>(
+      `${this.baseURL}/${id}`,
+      data,
     )
     return response.data
   }
 
-  async createSession() {
-    const response = await authAxios.post<IPomodoroSession>(this.baseURL)
-    return response.data
-  }
-
-  async updateSession(id: string, data: PomodoroSessionState) {
-    const response = await authAxios.put(`${this.baseURL}/${id}`, data)
-    return response.data
-  }
-
-  async deleteSession(id: string) {
-    const response = await authAxios.delete(`${this.baseURL}/${id}`)
-    return response.data
-  }
-
-  async updateRound(id: string, data: PomodoroSessionState) {
-    const response = await authAxios.put(`${this.baseURL}/round/${id}`, data)
+  async deleteTimer(id: string) {
+    const response = await authAxios.delete<IPomodoroTimer>(
+      `${this.baseURL}/${id}`,
+    )
     return response.data
   }
 }
