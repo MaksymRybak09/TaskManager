@@ -11,7 +11,7 @@ export class UserService {
 
   async createUser(dto: AuthDTO): Promise<User> {
     const user = {
-      name: '',
+      name: dto.name,
       email: dto.email,
       password: await hash(dto.password),
     }
