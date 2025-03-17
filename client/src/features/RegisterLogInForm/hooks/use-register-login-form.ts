@@ -1,13 +1,13 @@
 import { DASHBOARD_PAGES } from '@/shared/config/pages-url.config'
 import type { IAuthForm } from '@/shared/types/auth.types'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 
 export const useRegisterLogInForm = (
   serviceMethod: (date: IAuthForm) => void,
-  toastMessage: string,
+  schema: any,
 ) => {
   const {
     register,
@@ -16,6 +16,7 @@ export const useRegisterLogInForm = (
     reset,
   } = useForm<IAuthForm>({
     mode: 'onChange',
+    resolver: yupResolver(schema),
   })
 
   const { push } = useRouter()
@@ -24,7 +25,6 @@ export const useRegisterLogInForm = (
     mutationKey: ['auth'],
     mutationFn: async (data: IAuthForm) => serviceMethod(data),
     onSuccess() {
-      toast.success(toastMessage)
       reset()
       push(DASHBOARD_PAGES.HOME)
     },
