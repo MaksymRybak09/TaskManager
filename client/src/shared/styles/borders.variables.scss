@@ -1,0 +1,5 @@
+@import '@/shared/styles/colors.variables.scss';
+
+@mixin border {
+  border: 1px solid var($backgound-darken);
+}
