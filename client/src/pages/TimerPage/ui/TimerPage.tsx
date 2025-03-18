@@ -4,7 +4,7 @@ import Heading from '@/shared/components/heading/Heading'
 function TimerPage() {
   return (
     <>
-      <Heading title="Timer" />
+      <Heading size="4">Timer</Heading>
       <Timer />
     </>
   )

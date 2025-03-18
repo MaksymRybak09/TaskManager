@@ -4,7 +4,7 @@ import Heading from '@/shared/components/heading/Heading'
 function TasksPage() {
   return (
     <>
-      <Heading title="Tasks" />
+      <Heading size="4">Tasks</Heading>
       <TaskBoard />
     </>
   )

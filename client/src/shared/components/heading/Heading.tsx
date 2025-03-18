@@ -1,11 +1,13 @@
+import { ReactNode } from 'react'
 import styles from './heading.module.scss'
 
 type HeadingProps = {
-  title: string
+  children: ReactNode
+  size: '1' | '2' | '3' | '4' | '5' | '6'
 }
 
 function Heading(props: HeadingProps) {
-  return <h1 className={styles.title}>{props.title}</h1>
+  return <h1 className={styles[`headline${props.size}`]}>{props.children}</h1>
 }
 
 export default Heading

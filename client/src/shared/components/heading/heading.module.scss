@@ -1,8 +1,25 @@
-$title-color: #333;
-$title-font-weight: bold;
+@import '@/shared/styles/fonts.variables.scss';
 
-.title {
-  font-size: 2rem;
-  color: $title-color;
-  font-weight: $title-font-weight;
+.headline1 {
+  @include headline1();
+}
+
+.headline2 {
+  @include headline2();
+}
+
+.headline3 {
+  @include headline3();
+}
+
+.headline4 {
+  @include headline4();
+}
+
+.headline5 {
+  @include headline5();
+}
+
+.headline6 {
+  @include headline6();
 }

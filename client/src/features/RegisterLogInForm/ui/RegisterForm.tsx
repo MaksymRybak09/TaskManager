@@ -17,7 +17,7 @@ function RegisterForm() {
 
   return (
     <form onSubmit={onSubmit} className={styles.form}>
-      <Heading title={'Register'} />
+      <Heading size="4">Register</Heading>
       <div className={styles['form__section']}>
         <Field
           label="Name:"

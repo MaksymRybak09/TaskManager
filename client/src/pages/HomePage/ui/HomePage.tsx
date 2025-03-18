@@ -4,7 +4,7 @@ import Heading from '@/shared/components/heading/Heading'
 function HomePage() {
   return (
     <>
-      <Heading title="Statistics" />
+      <Heading size="4">Statistics</Heading>
       <Statistics />
     </>
   )

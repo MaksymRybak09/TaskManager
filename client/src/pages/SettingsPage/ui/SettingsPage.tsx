@@ -4,7 +4,7 @@ import Heading from '@/shared/components/heading/Heading'
 function SettingsPage() {
   return (
     <>
-      <Heading title={'Settings'} />
+      <Heading size="4">Settings</Heading>
       <SettingsUpdateForm />
     </>
   )

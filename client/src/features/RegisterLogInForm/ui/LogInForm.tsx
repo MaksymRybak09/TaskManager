@@ -17,7 +17,7 @@ function LogInForm() {
 
   return (
     <form onSubmit={onSubmit} className={styles.form}>
-      <Heading title={'Log in'} />
+      <Heading size="4">Log in</Heading>
       <div className={styles['form__section']}>
         <Field
           label="Email:"
