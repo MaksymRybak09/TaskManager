@@ -1,0 +1,27 @@
+@import '@/shared/styles/colors.variables.scss';
+@import '@/shared/styles/borders.variables.scss';
+@import '@/shared/styles/radiuses.variables.scss';
+
+.checkbox {
+  appearance: none;
+  padding: 9px 10px;
+  @include border();
+  border-radius: $radius;
+  cursor: pointer;
+  position: relative;
+
+  &:checked {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  &:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+  }
+}
