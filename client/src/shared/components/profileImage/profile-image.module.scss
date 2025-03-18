@@ -1,10 +1,16 @@
+@import '@/shared/styles/colors.variables.scss';
+@import '@/shared/styles/fonts.variables.scss';
+@import '@/shared/styles/radiuses.variables.scss';
+
 .image {
-  width: 60px;
-  height: 60px;
+  width: 3.5rem;
+  height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 34px;
-  background-color: #f0f0f0;
-  color: #333;
+  padding-bottom: 4px;
+  @include headline4();
+  background-color: $pine-greem50;
+  color: $pine-greem800;
+  border-radius: $radius;
 }
