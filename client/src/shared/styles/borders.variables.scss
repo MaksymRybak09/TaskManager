@@ -1,5 +1,9 @@
 @import '@/shared/styles/colors.variables.scss';
 
 @mixin border {
-  border: 1px solid var($backgound-darken);
+  border: 1px solid $backgound-darken;
+}
+
+@mixin border-focus {
+  border: 1px solid $primary;
 }
