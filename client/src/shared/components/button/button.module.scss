@@ -1,9 +1,36 @@
+@import '@/shared/styles/colors.variables.scss';
+@import '@/shared/styles/fonts.variables.scss';
+@import '@/shared/styles/borders.variables.scss';
+
 .button {
+  margin: 0;
   padding: 10px 20px;
+  @include button();
+  color: $primary;
+  background: none;
   border: none;
-  border-radius: 0.25rem;
-  background-color: #007bff;
-  color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
+}
+
+.transparent-button {
+  &:hover {
+    background-color: $pine-greem50;
+  }
+}
+
+.border-button {
+  @include border();
+
+  &:hover {
+    background-color: $pine-greem50;
+  }
+}
+
+.filled-button {
+  background-color: $primary;
+  color: $light-grey50;
+
+  &:hover {
+    background-color: $primary-lighten;
+  }
 }

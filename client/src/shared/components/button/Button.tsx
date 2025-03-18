@@ -3,11 +3,14 @@ import styles from './button.module.scss'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode
+  variant?: 'transparent' | 'border' | 'filled'
 }
 
-function Button({ children, ...props }: ButtonProps) {
+function Button({ children, variant = 'filled', ...props }: ButtonProps) {
+  const classes = `${styles.button} ${styles[`${variant}-button`]}`
+
   return (
-    <button className={styles.button} {...props}>
+    <button className={classes} {...props}>
       {children}
     </button>
   )
