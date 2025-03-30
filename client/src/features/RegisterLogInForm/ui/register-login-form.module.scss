@@ -1,9 +1,18 @@
+@import '@/shared/styles/fonts.variables.scss';
+
 .form {
   width: 300px;
-}
 
-.form__section {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  &__heading {
+    margin-bottom: 30px;
+  }
+
+  &__section {
+    margin-bottom: 15px;
+  }
+
+  &__paragraph {
+    margin-bottom: 5px;
+    @include body1;
+  }
 }

@@ -17,7 +17,9 @@ function LogInForm() {
 
   return (
     <form onSubmit={onSubmit} className={styles.form}>
-      <Heading size="4">Log in</Heading>
+      <div className={styles['form__heading']}>
+        <Heading size="4">Log in</Heading>
+      </div>
       <div className={styles['form__section']}>
         <Field
           label="Email:"
@@ -28,6 +30,8 @@ function LogInForm() {
           }}
           error={errors['email']}
         />
+      </div>
+      <div className={styles['form__section']}>
         <Field
           label="Password:"
           placeholder="Enter password"
@@ -38,11 +42,13 @@ function LogInForm() {
           error={errors['password']}
         />
       </div>
-      <p>
-        {`Don't have an account `}
-        <Linking href={'/register'}>Register</Linking>
-      </p>
-      <Button type="submit">Log In</Button>
+      <div className={styles['form__section']}>
+        <div className={styles['form__paragraph']}>
+          {`Don't have an account `}
+          <Linking href={'/register'}>Register</Linking>
+        </div>
+        <Button type="submit">Log In</Button>
+      </div>
     </form>
   )
 }

@@ -17,7 +17,9 @@ function RegisterForm() {
 
   return (
     <form onSubmit={onSubmit} className={styles.form}>
-      <Heading size="4">Register</Heading>
+      <div className={styles['form__heading']}>
+        <Heading size="4">Register</Heading>
+      </div>
       <div className={styles['form__section']}>
         <Field
           label="Name:"
@@ -27,6 +29,8 @@ function RegisterForm() {
           }}
           error={errors['name']}
         />
+      </div>
+      <div className={styles['form__section']}>
         <Field
           label="Email:"
           placeholder="Enter email"
@@ -36,6 +40,8 @@ function RegisterForm() {
           }}
           error={errors['email']}
         />
+      </div>
+      <div className={styles['form__section']}>
         <Field
           label="Password:"
           placeholder="Enter password"
@@ -46,10 +52,12 @@ function RegisterForm() {
           error={errors['password']}
         />
       </div>
-      <p>
-        Already have an account <Linking href={'/log-in'}>Log in</Linking>
-      </p>
-      <Button type="submit">Register</Button>
+      <div className={styles['form__section']}>
+        <div className={styles['form__paragraph']}>
+          Already have an account <Linking href={'/log-in'}>Log in</Linking>
+        </div>
+        <Button type="submit">Register</Button>
+      </div>
     </form>
   )
 }
