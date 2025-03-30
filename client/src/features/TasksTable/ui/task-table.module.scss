@@ -1,0 +1,19 @@
+@import '@/shared/styles/borders.variables.scss';
+@import '@/shared/styles/fonts.variables.scss';
+
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 15px;
+
+  &__title {
+    display: inline-block;
+    @include headline6;
+  }
+
+  &__button {
+    margin: 10px 0px 20px 0px;
+    display: inline-block;
+  }
+}

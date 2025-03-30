@@ -2,10 +2,10 @@ import { NewTaskButton } from '@/features/NewTaskButton'
 import { TaskRow } from '@/features/TaskRow'
 import { FILTERS } from '@/shared/constants/task-table-filters'
 import { filterTasks } from '@/shared/helpers/filter-tasks'
-import styles from '@/shared/styles/task-table-layout.module.scss'
 import type { ITask } from '@/shared/types/task.types'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
 import { Dispatch, SetStateAction } from 'react'
+import styles from './task-table.module.scss'
 
 type TasksTableProps = {
   value: string

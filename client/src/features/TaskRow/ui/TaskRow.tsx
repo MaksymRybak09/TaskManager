@@ -2,13 +2,13 @@ import { DatePicker } from '@/features/DatePicker'
 import { DeleteTaskButton } from '@/features/DeleteTaskButton'
 import Checkbox from '@/shared/components/checkbox/Checkbox'
 import { TransparentField } from '@/shared/components/transparentField/TransparentField'
-import TaskRowLayout from '@/shared/layout/TaskRowLayout/TaskRowLayout'
 import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTaskRow } from '../hooks/use-task-row'
 import Select from '@/shared/components/select/Select'
 import { getPriority } from '@/shared/helpers/get-priority'
+import styles from './task-row.module.scss'
 
 type ListRowProps = {
   item: ITask
@@ -23,8 +23,8 @@ function TaskRow(props: ListRowProps) {
   ])
 
   return (
-    <TaskRowLayout
-      taskInput={[
+    <div className={styles.row}>
+      <div className={styles['row--task-input']}>
         <Controller
           key="task-checkbox"
           control={control}
@@ -32,10 +32,11 @@ function TaskRow(props: ListRowProps) {
           render={({ field: { value, onChange } }) => (
             <Checkbox onChange={onChange} checked={value} />
           )}
-        />,
+        />
+        ,
         <TransparentField key="task-input" {...register('name')} />,
-      ]}
-      datePicker={
+      </div>
+      <div className={styles['row--date-picker']}>
         <Controller
           control={control}
           name="createdAt"
@@ -43,8 +44,8 @@ function TaskRow(props: ListRowProps) {
             <DatePicker onChange={onChange} value={value || ''} />
           )}
         />
-      }
-      prioritySelect={
+      </div>
+      <div className={styles['row--priority-select']}>
         <Controller
           control={control}
           name="priority"
@@ -56,11 +57,11 @@ function TaskRow(props: ListRowProps) {
             />
           )}
         />
-      }
-      deleteTaskButton={
+      </div>
+      <div className={styles['row--delete-task-button']}>
         <DeleteTaskButton item={props.item} setItems={props.setItems} />
-      }
-    />
+      </div>
+    </div>
   )
 }
 
