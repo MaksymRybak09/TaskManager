@@ -1,4 +1,4 @@
-import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
+import Button from '@/shared/components/button/Button'
 import { addTask } from '@/shared/helpers/add-task'
 import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
@@ -10,11 +10,12 @@ type ListAddRowInputProps = {
 
 function NewTaskButton(props: ListAddRowInputProps) {
   return (
-    <TransparentButton
+    <Button
+      variant="transparent"
       onClick={() => addTask(props.setItems, props.filterDate)}
     >
       New task
-    </TransparentButton>
+    </Button>
   )
 }
 

@@ -3,7 +3,6 @@
 import { PomodoroRounds } from '@/entity/PomodoroRounds'
 import Badge from '@/shared/components/badge/Badge'
 import Button from '@/shared/components/button/Button'
-import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
 import { formatTime } from '@/shared/helpers/format-time'
 import { useTimer } from '../hooks/use-timer'
 import styles from './timer.module.scss'
@@ -66,12 +65,13 @@ function Timer() {
         <Button onClick={isRunning ? pauseHandler : playHandler}>
           {isRunning ? 'Pause' : 'Play'}
         </Button>
-        <TransparentButton
+        <Button
+          variant="transparent"
           onClick={() => deleteTimer(timer?.id ?? '')}
           disabled={isDeleteTimerPending}
         >
           Delete timer
-        </TransparentButton>
+        </Button>
       </div>
     </div>
   )

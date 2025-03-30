@@ -1,6 +1,6 @@
 'use client'
 
-import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
+import Button from '@/shared/components/button/Button'
 import { useDeleteTask } from '@/shared/hooks/tasks/use-delete-task'
 import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
@@ -14,7 +14,8 @@ function DeleteTaskButton(props: DeleteTaskButton) {
   const { deleteTask, isDeletePending } = useDeleteTask()
 
   return (
-    <TransparentButton
+    <Button
+      variant="transparent"
       onClick={() =>
         props.item.id
           ? deleteTask(props.item.id)
@@ -22,7 +23,7 @@ function DeleteTaskButton(props: DeleteTaskButton) {
       }
     >
       {isDeletePending ? 'Loading...' : 'Delete task'}
-    </TransparentButton>
+    </Button>
   )
 }
 

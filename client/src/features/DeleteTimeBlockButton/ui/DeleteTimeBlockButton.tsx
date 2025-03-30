@@ -1,4 +1,4 @@
-import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
+import Button from '@/shared/components/button/Button'
 import { useDeleteTimeBlock } from '@/shared/hooks/time-block/use-delete-time-block'
 import type { ITimeBlock } from '@/shared/types/time-block.types'
 
@@ -12,9 +12,9 @@ function DeleteTimeBlockButton(props: DeleteTimeBlockButtonProps) {
   )
 
   return (
-    <TransparentButton onClick={() => deleteTimeBlock()}>
+    <Button variant="transparent" onClick={() => deleteTimeBlock()}>
       {isDeleteTimeBlockPending ? 'deleting...' : 'Delete'}
-    </TransparentButton>
+    </Button>
   )
 }
 

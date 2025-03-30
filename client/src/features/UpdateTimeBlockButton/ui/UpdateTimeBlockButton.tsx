@@ -1,4 +1,4 @@
-import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
+import Button from '@/shared/components/button/Button'
 import type {
   ITimeBlock,
   TimeBlockFormState,
@@ -13,7 +13,8 @@ function UpdateTimeBlockButton(props: UpdateTimeBlockButtonProps) {
   const { reset } = useFormContext<TimeBlockFormState>()
 
   return (
-    <TransparentButton
+    <Button
+      variant="transparent"
       onClick={() =>
         reset({
           id: props.item.id,
@@ -25,7 +26,7 @@ function UpdateTimeBlockButton(props: UpdateTimeBlockButtonProps) {
       }
     >
       Update
-    </TransparentButton>
+    </Button>
   )
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import TransparentButton from '@/shared/components/transparentButton/TransparentButton'
+import Button from '@/shared/components/button/Button'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { DayPicker } from 'react-day-picker'
@@ -21,9 +21,9 @@ function DatePicker(props: DatePickerProps) {
 
   return (
     <div ref={ref} className={styles['date-picker']}>
-      <TransparentButton onClick={() => setIsShow(!isShow)}>
+      <Button variant="transparent" onClick={() => setIsShow(!isShow)}>
         {props.value ? dayjs(props.value).format('LL') : 'Click for select'}
-      </TransparentButton>
+      </Button>
       {isShow && (
         <div className={styles['calendar']}>
           <DayPicker
