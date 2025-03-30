@@ -4,6 +4,14 @@
   border: 1px solid $background-darken;
 }
 
+@mixin border-bottom {
+  border-bottom: 1px solid $background-darken;
+}
+
 @mixin border-focus {
+  border: 1px solid $primary;
+}
+
+@mixin border-bottom-focus {
   border: 1px solid $primary;
 }
