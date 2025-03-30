@@ -10,10 +10,7 @@ type ListAddRowInputProps = {
 
 function NewTaskButton(props: ListAddRowInputProps) {
   return (
-    <Button
-      variant="transparent"
-      onClick={() => addTask(props.setItems, props.filterDate)}
-    >
+    <Button onClick={() => addTask(props.setItems, props.filterDate)}>
       New task
     </Button>
   )
