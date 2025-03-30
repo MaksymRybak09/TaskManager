@@ -1,3 +1,5 @@
+@import '@/shared/styles/fonts.variables.scss';
+
 .block {
   display: flex;
   align-items: center;
@@ -7,13 +9,10 @@
 .block__info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
   margin-bottom: 4px;
-  font-size: 14px;
-  color: #565656;
+  @include body2;
 }
 
 .block__user-name {
-  font-size: 22px;
-  color: #030303;
+  @include headline5;
 }
