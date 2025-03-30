@@ -1,5 +1,10 @@
+@import '@/shared/styles/colors.variables.scss';
+@import '@/shared/styles/radiuses.variables.scss';
+
 .menu {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  gap: 3px;
+  padding: 5px;
+  background-color: $light-grey100;
+  border-radius: $radius;
 }
