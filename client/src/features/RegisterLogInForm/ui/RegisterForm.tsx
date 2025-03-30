@@ -3,8 +3,8 @@
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import Heading from '@/shared/components/heading/Heading'
+import Linking from '@/shared/components/link/linking'
 import { authService } from '@/shared/services/auth/auth.service'
-import Link from 'next/link'
 import { registerFormSchema } from '../config/forms.scema'
 import { useRegisterLogInForm } from '../hooks/use-register-login-form'
 import styles from './register-login-form.module.scss'
@@ -47,7 +47,7 @@ function RegisterForm() {
         />
       </div>
       <p>
-        Already have an account <Link href={'/log-in'}>Log in</Link>
+        Already have an account <Linking href={'/log-in'}>Log in</Linking>
       </p>
       <Button type="submit">Register</Button>
     </form>
