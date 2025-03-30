@@ -1,7 +1,7 @@
 import { LogInForm } from '@/features/RegisterLogInForm'
 
-function RegisterPage() {
+function LogInPage() {
   return <LogInForm />
 }
 
-export default RegisterPage
+export default LogInPage
