@@ -1,6 +1,9 @@
+@import '@/shared/styles/colors.variables.scss';
+
 .transparent-field {
   width: 100%;
   border: none;
   outline: none;
   text-wrap: unset;
+  background-color: $background;
 }
