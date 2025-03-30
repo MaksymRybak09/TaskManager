@@ -1,11 +1,14 @@
+@import '@/shared/styles/colors.variables.scss';
+@import '@/shared/styles/fonts.variables.scss';
+@import '@/shared/styles/radiuses.variables.scss';
+
 .menu__item {
-  min-width: 125px;
   padding: 8px 16px;
-  color: #333;
+  @include body1;
   text-decoration: none;
-  font-size: 18px;
+  border-radius: $radius;
 
   &:hover {
-    background-color: #eeeeee;
+    background-color: $light-grey200;
   }
 }
