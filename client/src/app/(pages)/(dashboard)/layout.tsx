@@ -1,7 +1,6 @@
-import { ReactNode } from 'react'
 import styles from '@/shared/layout/HomeLayout/home-layout.module.scss'
-import { HeaderWithLogOut } from '@/widgets/HeaderWithLogOut'
-import { Sidebar } from '@/entity/Sidebar'
+import { HeaderWithMenuAndLogOut } from '@/widgets/HeaderWithMenuAndLogOut'
+import { ReactNode } from 'react'
 
 type layoutProps = {
   children: ReactNode
@@ -10,11 +9,8 @@ type layoutProps = {
 function layout(props: layoutProps) {
   return (
     <div className={styles.layout}>
-      <HeaderWithLogOut />
+      <HeaderWithMenuAndLogOut />
       <div className={styles.container}>
-        <aside className={styles.asside}>
-          <Sidebar />
-        </aside>
         <main className={styles.main}>{props.children}</main>
       </div>
     </div>
