@@ -1,0 +1,8 @@
+@import '@/shared/styles/colors.variables.scss';
+@import '@/shared/styles/fonts.variables.scss';
+
+.linking {
+  @include body1;
+  text-decoration: none;
+  color: $primary-darken;
+}
