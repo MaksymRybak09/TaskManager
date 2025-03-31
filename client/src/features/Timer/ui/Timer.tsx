@@ -27,16 +27,18 @@ function Timer() {
 
   if (!timer) {
     return (
-      <Button onClick={() => createTimer()} disabled={isCreateTimerPending}>
-        Create timer
-      </Button>
+      <div className={styles['create-timer-button']}>
+        <Button onClick={() => createTimer()} disabled={isCreateTimerPending}>
+          Create timer
+        </Button>
+      </div>
     )
   }
 
   if (timer?.isCompleted) {
     return (
-      <>
-        <div>Timer has ended</div>
+      <div className={styles['refresh-timer-block']}>
+        <div className={styles['refresh-timer-title']}>Timer has ended</div>
         <Button
           onClick={() => {
             deleteTimer(timer?.id ?? '')
@@ -46,7 +48,7 @@ function Timer() {
         >
           Refresh timer
         </Button>
-      </>
+      </div>
     )
   }
 

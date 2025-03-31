@@ -24,3 +24,15 @@
     align-self: flex-start;
   }
 }
+
+.create-timer-button {
+  max-width: auto;
+}
+
+.refresh-timer-block {
+  @include body1;
+}
+
+.refresh-timer-title {
+  margin-bottom: 6px;
+}
