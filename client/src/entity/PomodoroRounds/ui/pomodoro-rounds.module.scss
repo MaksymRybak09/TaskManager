@@ -1,3 +1,8 @@
+@import '@/shared/styles/colors.variables.scss';
+@import '@/shared/styles/fonts.variables.scss';
+@import '@/shared/styles/borders.variables.scss';
+@import '@/shared/styles/radiuses.variables.scss';
+
 .pomodoro {
   display: flex;
   align-items: center;
@@ -12,12 +17,12 @@
 .round {
   width: 25px;
   height: 25px;
-  border: 0.5px solid #b5b5b5;
+  @include border;
 
   &__completed {
     width: 25px;
     height: 25px;
-    background-color: #007bff;
-    border: 0.5px solid #007bff;
+    background-color: $primary;
+    border: 0.5px solid $primary;
   }
 }
