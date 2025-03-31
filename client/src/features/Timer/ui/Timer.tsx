@@ -1,7 +1,6 @@
 'use client'
 
 import { PomodoroRounds } from '@/entity/PomodoroRounds'
-import Badge from '@/shared/components/badge/Badge'
 import Button from '@/shared/components/button/Button'
 import { formatTime } from '@/shared/helpers/format-time'
 import { useTimer } from '../hooks/use-timer'
@@ -53,8 +52,10 @@ function Timer() {
 
   return (
     <div className={styles.timer}>
-      <div className={styles.time}>{formatTime(secondsLeftState)}</div>
-      <Badge>{isBreakTime ? 'Rest' : 'Work'}</Badge>
+      <div>
+        <div className={styles.time}>{formatTime(secondsLeftState)}</div>
+        <div className={styles.badge}>{isBreakTime ? 'Rest' : 'Work'}</div>
+      </div>
       <PomodoroRounds
         rounds={timer.rounds}
         activeRound={timer.currentRound}
