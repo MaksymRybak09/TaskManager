@@ -4,6 +4,7 @@ import Button from '@/shared/components/button/Button'
 import { useDeleteTask } from '@/shared/hooks/tasks/use-delete-task'
 import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
+import { Trash } from 'lucide-react'
 
 type DeleteTaskButton = {
   item: ITask
@@ -15,6 +16,7 @@ function DeleteTaskButton(props: DeleteTaskButton) {
 
   return (
     <Button
+      icon={Trash}
       variant="transparent"
       onClick={() =>
         props.item.id

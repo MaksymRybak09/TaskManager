@@ -5,6 +5,7 @@ import Button from '@/shared/components/button/Button'
 import { formatTime } from '@/shared/helpers/format-time'
 import { useTimer } from '../hooks/use-timer'
 import styles from './timer.module.scss'
+import { Plus, RefreshCcw, Pause, Play, Trash } from 'lucide-react'
 
 function Timer() {
   const {
@@ -28,7 +29,11 @@ function Timer() {
   if (!timer) {
     return (
       <div className={styles['create-timer-button']}>
-        <Button onClick={() => createTimer()} disabled={isCreateTimerPending}>
+        <Button
+          icon={Plus}
+          onClick={() => createTimer()}
+          disabled={isCreateTimerPending}
+        >
           Create timer
         </Button>
       </div>
@@ -40,6 +45,7 @@ function Timer() {
       <div className={styles['refresh-timer-block']}>
         <div className={styles['refresh-timer-title']}>Timer has ended</div>
         <Button
+          icon={RefreshCcw}
           onClick={() => {
             deleteTimer(timer?.id ?? '')
             createTimer()
@@ -65,10 +71,14 @@ function Timer() {
         prevRoundHandler={prevRoundHandler}
       />
       <div className={styles['timer__buttons']}>
-        <Button onClick={isRunning ? pauseHandler : playHandler}>
+        <Button
+          icon={isRunning ? Pause : Play}
+          onClick={isRunning ? pauseHandler : playHandler}
+        >
           {isRunning ? 'Pause' : 'Play'}
         </Button>
         <Button
+          icon={Trash}
           variant="transparent"
           onClick={() => deleteTimer(timer?.id ?? '')}
           disabled={isDeleteTimerPending}

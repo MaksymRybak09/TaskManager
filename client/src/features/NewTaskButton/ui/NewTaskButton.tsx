@@ -1,6 +1,7 @@
 import Button from '@/shared/components/button/Button'
 import { addTask } from '@/shared/helpers/add-task'
 import type { ITask } from '@/shared/types/task.types'
+import { Plus } from 'lucide-react'
 import { Dispatch, SetStateAction } from 'react'
 
 type ListAddRowInputProps = {
@@ -10,7 +11,10 @@ type ListAddRowInputProps = {
 
 function NewTaskButton(props: ListAddRowInputProps) {
   return (
-    <Button onClick={() => addTask(props.setItems, props.filterDate)}>
+    <Button
+      icon={Plus}
+      onClick={() => addTask(props.setItems, props.filterDate)}
+    >
       New task
     </Button>
   )

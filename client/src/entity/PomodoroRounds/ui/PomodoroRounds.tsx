@@ -1,6 +1,7 @@
 import Button from '@/shared/components/button/Button'
 import styles from './pomodoro-rounds.module.scss'
 import { ReactNode } from 'react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 type PomodoroRoundProps = {
   rounds: number
@@ -30,6 +31,7 @@ function PomodoroRounds(props: PomodoroRoundProps) {
   return (
     <div className={styles['pomodoro']}>
       <Button
+        icon={ArrowLeft}
         disabled={!isCanPrevRound}
         onClick={() => (isCanPrevRound ? props.prevRoundHandler() : false)}
       >
@@ -37,6 +39,7 @@ function PomodoroRounds(props: PomodoroRoundProps) {
       </Button>
       <div className={styles.rounds}>{rounds}</div>
       <Button
+        icon={ArrowRight}
         disabled={!isCanNextRound}
         onClick={() => (isCanNextRound ? props.nextRoundHandler() : false)}
       >
