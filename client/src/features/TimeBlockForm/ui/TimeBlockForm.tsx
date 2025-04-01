@@ -31,7 +31,7 @@ function TimeBlockForm() {
         error={errors['name']}
       />
       <Field
-        label="Duration:"
+        label="Duration (min):"
         placeholder="Enter duration"
         type="number"
         register={{
