@@ -69,7 +69,7 @@ function SettingsUpdateForm() {
           error={errors['intervalsCount']}
         />
       </div>
-      <div>
+      <div className={styles['form__buttons']}>
         <Button type="submit" disabled={isPending}>
           Update
         </Button>

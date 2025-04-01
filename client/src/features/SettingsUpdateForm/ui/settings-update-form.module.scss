@@ -1,9 +1,10 @@
-.form-title {
-  margin-bottom: 10px;
+.form-column {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: 10px;
 }
 
-.form-column {
-  display: inline-block;
-  margin-right: 5px;
-  padding-right: 10px;
+.form__buttons {
+  margin-top: 10px;
 }
