@@ -7,10 +7,6 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname
 
-  if (pathname.startsWith('/_next/') || pathname.startsWith('/static/')) {
-    return NextResponse.next()
-  }
-
   const isAuthPage =
     pathname.startsWith('/log-in') || pathname.startsWith('/register')
 
@@ -30,5 +26,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/:path*'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+  ],
 }
