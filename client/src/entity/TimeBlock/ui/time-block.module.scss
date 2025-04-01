@@ -1,12 +1,16 @@
 @import '@/shared/styles/fonts.variables.scss';
 
 .time-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-width: 25rem;
   max-width: 30rem;
   word-wrap: break-word;
 }
 
 .drag-handle {
+  display: inline-block;
   cursor: grab;
   user-select: none;
   padding: 4px;

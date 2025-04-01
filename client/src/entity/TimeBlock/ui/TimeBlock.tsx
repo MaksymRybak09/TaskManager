@@ -25,15 +25,19 @@ function TimeBlock(props: TimeBlockProps) {
           minHeight: `${calcHeight(props.item.duration)}px`,
         }}
       >
-        <div
-          {...attributes}
-          {...listeners}
-          className={timeBlockStyles['drag-handle']}
-        >
-          🟰
+        <div>
+          <div
+            {...attributes}
+            {...listeners}
+            className={timeBlockStyles['drag-handle']}
+          >
+            🟰
+          </div>
+          <div className={timeBlockStyles['name']}>{props.item.name}</div>
+          <div className={timeBlockStyles['duration']}>
+            {props.item.duration}
+          </div>
         </div>
-        <div className={timeBlockStyles['name']}>{props.item.name}</div>
-        <div className={timeBlockStyles['duration']}>{props.item.duration}</div>
         <div className={timeBlockStyles['actions']}>{props.actions}</div>
       </div>
     </div>
