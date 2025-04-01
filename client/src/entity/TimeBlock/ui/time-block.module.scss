@@ -1,5 +1,9 @@
+@import '@/shared/styles/fonts.variables.scss';
+
 .time-block {
   min-width: 25rem;
+  max-width: 30rem;
+  word-wrap: break-word;
 }
 
 .drag-handle {
@@ -11,4 +15,22 @@
 
 .drag-handle:active {
   cursor: grabbing;
+}
+
+.name {
+  display: block;
+  @include headline5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.duration {
+  @include body1;
+}
+
+.actions {
+  display: flex;
+  justify-content: right;
 }

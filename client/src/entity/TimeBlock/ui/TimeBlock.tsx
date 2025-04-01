@@ -22,7 +22,7 @@ function TimeBlock(props: TimeBlockProps) {
         className={timeBlockStyles['time-block']}
         style={{
           backgroundColor: props.item.color,
-          height: `${calcHeight(props.item.duration)}px`,
+          minHeight: `${calcHeight(props.item.duration)}px`,
         }}
       >
         <div
@@ -30,13 +30,11 @@ function TimeBlock(props: TimeBlockProps) {
           {...listeners}
           className={timeBlockStyles['drag-handle']}
         >
-          🟰 Drag me
+          🟰
         </div>
-        <div>
-          {props.item.name}
-          <p>{props.item.duration}</p>
-        </div>
-        <div>{props.actions}</div>
+        <div className={timeBlockStyles['name']}>{props.item.name}</div>
+        <div className={timeBlockStyles['duration']}>{props.item.duration}</div>
+        <div className={timeBlockStyles['actions']}>{props.actions}</div>
       </div>
     </div>
   )
