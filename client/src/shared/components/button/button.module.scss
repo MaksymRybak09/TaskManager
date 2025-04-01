@@ -3,6 +3,9 @@
 @import '@/shared/styles/borders.variables.scss';
 
 .button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 10px 20px;
   @include button();
   color: $primary;
@@ -32,4 +35,10 @@
   &:hover {
     background-color: $primary-lighten;
   }
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  color: $light-grey50;
 }
