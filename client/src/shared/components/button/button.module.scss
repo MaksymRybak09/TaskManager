@@ -4,6 +4,7 @@
 
 .button {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 6px;
   padding: 10px 20px;
@@ -17,6 +18,12 @@
 .transparent-button {
   &:hover {
     background-color: $pine-greem50;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    color: $primary;
   }
 }
 
@@ -35,10 +42,10 @@
   &:hover {
     background-color: $primary-lighten;
   }
-}
 
-.icon {
-  width: 22px;
-  height: 22px;
-  color: $light-grey50;
+  .icon {
+    width: 18px;
+    height: 18px;
+    color: $light-grey50;
+  }
 }
