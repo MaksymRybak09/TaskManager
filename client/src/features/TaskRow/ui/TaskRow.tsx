@@ -1,13 +1,13 @@
 import { DatePicker } from '@/features/DatePicker'
 import { DeleteTaskButton } from '@/features/DeleteTaskButton'
 import Checkbox from '@/shared/components/checkbox/Checkbox'
+import Select from '@/shared/components/select/Select'
 import { TransparentField } from '@/shared/components/transparentField/TransparentField'
+import { getPriority } from '@/shared/helpers/get-priority'
 import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTaskRow } from '../hooks/use-task-row'
-import Select from '@/shared/components/select/Select'
-import { getPriority } from '@/shared/helpers/get-priority'
 import styles from './task-row.module.scss'
 
 type ListRowProps = {
@@ -33,8 +33,7 @@ function TaskRow(props: ListRowProps) {
             <Checkbox onChange={onChange} checked={value} />
           )}
         />
-        ,
-        <TransparentField key="task-input" {...register('name')} />,
+        <TransparentField key="task-input" {...register('name')} />
       </div>
       <div className={styles['row--date-picker']}>
         <Controller
