@@ -1,3 +1,5 @@
+'use client'
+
 import MenuItem from '@/shared/components/menuItem/MenuItem'
 import { menuConfig } from '../config/menu-config'
 import styles from './menu.module.scss'
@@ -9,6 +11,7 @@ function Menu() {
         <MenuItem
           key={menuItem.key}
           label={menuItem.label}
+          icon={menuItem.icon}
           path={menuItem.path}
         />
       ))}
