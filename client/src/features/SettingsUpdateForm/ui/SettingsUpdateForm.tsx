@@ -42,7 +42,7 @@ function SettingsUpdateForm() {
       </div>
       <div className={styles['form-column']}>
         <Field
-          label="Work interval:"
+          label="Work interval (min):"
           placeholder="Enter work interval"
           type="number"
           register={{
@@ -51,7 +51,7 @@ function SettingsUpdateForm() {
           error={errors['workInterval']}
         />
         <Field
-          label="Break interval:"
+          label="Break interval (min):"
           placeholder="Enter break interval"
           type="number"
           register={{
