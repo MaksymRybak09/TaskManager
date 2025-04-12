@@ -3,7 +3,7 @@ import styles from './button.module.scss'
 import { LucideIcon } from 'lucide-react'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: ReactNode
+  children?: ReactNode
   variant?: 'transparent' | 'border' | 'filled'
   icon?: LucideIcon
 }
@@ -19,7 +19,8 @@ function Button({
   return (
     <button className={classes} {...props}>
       {Icon && <Icon className={styles.icon} />}
-      {children}
+      {children && children}
+      {!children && !Icon && 'Default text'}
     </button>
   )
 }
