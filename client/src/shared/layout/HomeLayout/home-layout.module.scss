@@ -4,13 +4,8 @@
 
 .container {
   display: flex;
-  height: 100%;
-}
-
-.asside {
-  min-width: 185px;
-  padding: 10px;
-  border-right: 0.5px solid #c6c6c6;
+  min-height: 100vh;
+  position: relative;
 }
 
 .main {
@@ -19,4 +14,12 @@
   gap: 10px;
   width: 100%;
   padding: 15px;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
 }
