@@ -2,7 +2,8 @@
 @import '@/shared/styles/fonts.variables.scss';
 @import '@/shared/styles/radiuses.variables.scss';
 
-.menu__item {
+.menu__item,
+.tab {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,6 +22,11 @@
     height: 18px;
     color: $font-color;
   }
+}
+
+.tab {
+  flex-direction: column;
+  @include body2;
 }
 
 .active {

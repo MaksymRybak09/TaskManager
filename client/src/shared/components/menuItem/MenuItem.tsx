@@ -1,9 +1,10 @@
 'use client'
 
-import Link from 'next/link'
-import styles from './menu-item.module.scss'
-import { usePathname } from 'next/navigation'
+import { useBreakPoints } from '@/shared/hooks/general/use-break-points'
 import { LucideIcon } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import styles from './menu-item.module.scss'
 
 type MenuItemProps = {
   label: string
@@ -15,7 +16,8 @@ function MenuItem({ icon: Icon, ...props }: MenuItemProps) {
   const pathname = usePathname()
   const isActive = pathname === props.path
 
-  const stylesString = `${styles['menu__item']} ${
+  const { isTablet } = useBreakPoints()
+  const stylesString = `${styles[isTablet ? 'tab' : 'menu__item']} ${
     isActive ? styles.active : ''
   }`
 
