@@ -1,7 +1,8 @@
 @import '@/shared/styles/colors.variables.scss';
 @import '@/shared/styles/borders.variables.scss';
 
-.pomodoro {
+.pomodoro,
+.pomodoro-mb {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -22,5 +23,21 @@
     height: 25px;
     background-color: $primary;
     border: 0.5px solid $primary;
+  }
+}
+
+.pomodoro-mb {
+  gap: 4px;
+
+  .round {
+    width: 20px;
+    height: 20px;
+
+    &__completed {
+      width: 20px;
+      height: 20px;
+      background-color: $primary;
+      border: 0.5px solid $primary;
+    }
   }
 }

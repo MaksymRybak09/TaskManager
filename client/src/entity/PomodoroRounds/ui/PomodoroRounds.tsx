@@ -8,6 +8,7 @@ type PomodoroRoundProps = {
   activeRound: number
   nextRoundHandler: () => void
   prevRoundHandler: () => void
+  isTablet?: boolean
 }
 
 function PomodoroRounds(props: PomodoroRoundProps) {
@@ -29,13 +30,13 @@ function PomodoroRounds(props: PomodoroRoundProps) {
   }
 
   return (
-    <div className={styles['pomodoro']}>
+    <div className={styles[props.isTablet ? 'pomodoro-mb' : 'pomodoro']}>
       <Button
         icon={ArrowLeft}
         disabled={!isCanPrevRound}
         onClick={() => (isCanPrevRound ? props.prevRoundHandler() : false)}
       >
-        Previos
+        {!props.isTablet ? 'Previos' : undefined}
       </Button>
       <div className={styles.rounds}>{rounds}</div>
       <Button
@@ -43,7 +44,7 @@ function PomodoroRounds(props: PomodoroRoundProps) {
         disabled={!isCanNextRound}
         onClick={() => (isCanNextRound ? props.nextRoundHandler() : false)}
       >
-        Next
+        {!props.isTablet ? 'next' : undefined}
       </Button>
     </div>
   )

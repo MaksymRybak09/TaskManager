@@ -71,6 +71,7 @@ function Timer() {
         activeRound={timer.currentRound}
         nextRoundHandler={nextRoundHandler}
         prevRoundHandler={prevRoundHandler}
+        isTablet={isTablet}
       />
       <div className={styles['timer__buttons']}>
         <Button
