@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@/shared/components/button/Button'
+import { useBreakPoints } from '@/shared/hooks/general/use-break-points'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { DayPicker } from 'react-day-picker'
@@ -18,6 +19,7 @@ function DatePicker(props: DatePickerProps) {
   const { selected, isShow, setIsShow, ref, handleDaySelect } = useDatePicker(
     props.onChange,
   )
+  const { isTablet } = useBreakPoints()
 
   return (
     <div ref={ref} className={styles['date-picker']}>
@@ -25,7 +27,7 @@ function DatePicker(props: DatePickerProps) {
         {props.value ? dayjs(props.value).format('LL') : 'Click for select'}
       </Button>
       {isShow && (
-        <div className={styles['calendar']}>
+        <div className={styles[isTablet ? 'calendar-mb' : 'calendar']}>
           <DayPicker
             startMonth={new Date(2025, 0)}
             autoFocus={isShow}

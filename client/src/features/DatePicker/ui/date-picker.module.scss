@@ -7,7 +7,8 @@
   display: inline-block;
   position: relative;
 
-  .calendar {
+  .calendar,
+  .calendar-mb {
     position: absolute;
     top: 100%;
     right: 0;
@@ -35,5 +36,11 @@
         background-color: $background-darken;
       }
     }
+  }
+
+  .calendar-mb {
+    left: 0;
+    right: auto;
+    z-index: 20;
   }
 }
