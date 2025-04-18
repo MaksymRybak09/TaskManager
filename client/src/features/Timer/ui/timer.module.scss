@@ -1,6 +1,7 @@
 @import '@/shared/styles/fonts.variables.scss';
 
-.timer {
+.timer,
+.timer-mb {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -19,10 +20,10 @@
     display: flex;
     gap: 4px;
   }
+}
 
-  & * {
-    align-self: flex-start;
-  }
+.timer-mb {
+  align-items: center;
 }
 
 .create-timer-button {

@@ -3,9 +3,10 @@
 import { PomodoroRounds } from '@/entity/PomodoroRounds'
 import Button from '@/shared/components/button/Button'
 import { formatTime } from '@/shared/helpers/format-time'
+import { useBreakPoints } from '@/shared/hooks/general/use-break-points'
+import { Pause, Play, Plus, RefreshCcw, Trash } from 'lucide-react'
 import { useTimer } from '../hooks/use-timer'
 import styles from './timer.module.scss'
-import { Plus, RefreshCcw, Pause, Play, Trash } from 'lucide-react'
 
 function Timer() {
   const {
@@ -23,6 +24,7 @@ function Timer() {
     pauseHandler,
     playHandler,
   } = useTimer()
+  const { isTablet } = useBreakPoints()
 
   if (isTimerPending) return <div>Loading...</div>
 
@@ -59,7 +61,7 @@ function Timer() {
   }
 
   return (
-    <div className={styles.timer}>
+    <div className={styles[isTablet ? 'timer-mb' : 'timer']}>
       <div>
         <div className={styles.time}>{formatTime(secondsLeftState)}</div>
         <div className={styles.badge}>{isBreakTime ? 'Rest' : 'Work'}</div>
@@ -75,7 +77,7 @@ function Timer() {
           icon={isRunning ? Pause : Play}
           onClick={isRunning ? pauseHandler : playHandler}
         >
-          {isRunning ? 'Pause' : 'Play'}
+          {!isTablet ? (isRunning ? 'Pause' : 'Play') : undefined}
         </Button>
         <Button
           icon={Trash}
@@ -83,7 +85,7 @@ function Timer() {
           onClick={() => deleteTimer(timer?.id ?? '')}
           disabled={isDeleteTimerPending}
         >
-          Delete timer
+          {!isTablet ? 'Delete timer' : undefined}
         </Button>
       </div>
     </div>
