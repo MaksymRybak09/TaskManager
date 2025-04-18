@@ -2,6 +2,7 @@
 
 import { PomodoroRounds } from '@/entity/PomodoroRounds'
 import Button from '@/shared/components/button/Button'
+import Loader from '@/shared/components/loader/Loader'
 import { formatTime } from '@/shared/helpers/format-time'
 import { useBreakPoints } from '@/shared/hooks/general/use-break-points'
 import { Pause, Play, Plus, RefreshCcw, Trash } from 'lucide-react'
@@ -26,7 +27,7 @@ function Timer() {
   } = useTimer()
   const { isTablet } = useBreakPoints()
 
-  if (isTimerPending) return <div>Loading...</div>
+  if (isTimerPending) return <Loader />
 
   if (!timer) {
     return (

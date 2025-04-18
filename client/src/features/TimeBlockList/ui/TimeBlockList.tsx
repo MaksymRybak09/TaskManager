@@ -3,6 +3,7 @@
 import { TimeBlock } from '@/entity/TimeBlock'
 import { DeleteTimeBlockButton } from '@/features/DeleteTimeBlockButton'
 import { UpdateTimeBlockButton } from '@/features/UpdateTimeBlockButton'
+import Loader from '@/shared/components/loader/Loader'
 import { calcHoursLeft } from '@/shared/helpers/calc-hours-left'
 import { useTimeBlockDND } from '@/shared/hooks/time-block/use-time-block-dnd'
 import { useTimeBlocks } from '@/shared/hooks/time-block/use-time-blocks'
@@ -15,7 +16,7 @@ function TimeBlockList() {
   const { handleDragEnd, sensors } = useTimeBlockDND(items, setItems)
   const hoursLeft = calcHoursLeft(items)
 
-  if (isLoading) return 'Loading'
+  if (isLoading) return <Loader />
 
   return (
     <div className={styles['time-block-list']}>
