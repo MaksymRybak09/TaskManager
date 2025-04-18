@@ -4,6 +4,7 @@ import Checkbox from '@/shared/components/checkbox/Checkbox'
 import Select from '@/shared/components/select/Select'
 import { TransparentField } from '@/shared/components/transparentField/TransparentField'
 import { getPriority } from '@/shared/helpers/get-priority'
+import { useBreakPoints } from '@/shared/hooks/general/use-break-points'
 import type { ITask } from '@/shared/types/task.types'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
@@ -21,9 +22,10 @@ function TaskRow(props: ListRowProps) {
     'MEDIUM',
     'LOW',
   ])
+  const { isTablet } = useBreakPoints()
 
   return (
-    <div className={styles.row}>
+    <div className={styles[isTablet ? 'row-mb' : 'row']}>
       <div className={styles['row--task-input']}>
         <Controller
           key="task-checkbox"
