@@ -7,15 +7,15 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname
 
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME, request.url))
+  }
+
   const isAuthPage =
     pathname.startsWith('/log-in') || pathname.startsWith('/register')
 
   if (isAuthPage && refreshToken) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME, request.url))
-  }
-
-  if (isAuthPage) {
-    return NextResponse.next()
   }
 
   if (!refreshToken) {
