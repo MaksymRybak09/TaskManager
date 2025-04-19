@@ -3,7 +3,7 @@
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import Heading from '@/shared/components/heading/Heading'
-import Linking from '@/shared/components/link/linking'
+import Linking from '@/shared/components/link/Linking'
 import { authService } from '@/shared/services/auth/auth.service'
 import { registerFormSchema } from '../config/forms.scema'
 import { useRegisterLogInForm } from '../hooks/use-register-login-form'
