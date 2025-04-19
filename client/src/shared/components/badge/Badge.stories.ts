@@ -10,7 +10,7 @@ export default meta
 
 type Story = StoryObj<typeof Badge>
 
-export const item: Story = {
+export const Default: Story = {
   args: {
     children: 'Badge',
   },
