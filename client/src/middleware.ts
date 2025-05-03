@@ -4,12 +4,7 @@ import { DASHBOARD_PAGES } from './shared/config/pages-url.config'
 
 export async function middleware(request: NextRequest) {
   const refreshToken = request.cookies.get(Tokens.REFRESH_TOKEN)?.value
-
   const pathname = request.nextUrl.pathname
-
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME, request.url))
-  }
 
   const isAuthPage =
     pathname.startsWith('/log-in') || pathname.startsWith('/register')
@@ -18,7 +13,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME, request.url))
   }
 
-  if (!refreshToken) {
+  if (!refreshToken && !isAuthPage) {
     return NextResponse.redirect(new URL('/register', request.url))
   }
 
