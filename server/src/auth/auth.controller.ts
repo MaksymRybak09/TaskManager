@@ -9,10 +9,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { ApiTags, ApiResponse } from '@nestjs/swagger'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service'
-import { AuthDTO } from './dto/auth.dto'
+import { AuthDTO, OidcAuthDTO } from './dto/auth.dto'
 import { AuthResponseDTO } from './dto/auth.response.dto'
 
 @ApiTags('Auth')
@@ -50,6 +50,25 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<AuthResponseDTO> {
     const { refreshToken, ...response } = await this.authService.logIn(dto)
+    this.authService.addRefreshTokenToResponse(res, refreshToken)
+
+    return response
+  }
+
+  @ApiResponse({
+    status: 200,
+    description: 'User sign-ined via OIDC successfully.',
+  })
+  @ApiResponse({ status: 404, description: 'User not found.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @UsePipes(new ValidationPipe())
+  @Post('sign-in')
+  async signIn(
+    @Body() dto: OidcAuthDTO,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<AuthResponseDTO> {
+    const { refreshToken, ...response } =
+      await this.authService.validateOidcLogIn(dto)
     this.authService.addRefreshTokenToResponse(res, refreshToken)
 
     return response
