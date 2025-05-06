@@ -19,3 +19,15 @@ export class AuthDTO {
   })
   password: string
 }
+
+export class OidcAuthDTO {
+  @ApiProperty({ example: 'maksym' })
+  @IsString()
+  @IsOptional()
+  name: string
+
+  @ApiProperty({ example: 'maksymrybak@gmail.com' })
+  @IsString()
+  @IsEmail()
+  email: string
+}
