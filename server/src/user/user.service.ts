@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Task, User } from '@prisma/client'
 import { hash } from 'argon2'
-import { AuthDTO } from 'src/auth/dto/auth.dto'
+import { AuthDTO, OidcAuthDTO } from 'src/auth/dto/auth.dto'
 import { PrismaService } from '../prima.service'
 import { UserDTO } from './dto/user.dto'
 
@@ -14,6 +14,14 @@ export class UserService {
       name: dto.name,
       email: dto.email,
       password: await hash(dto.password),
+    }
+    return this.prisma.user.create({ data: user })
+  }
+
+  async createUserWithoutPassword(dto: OidcAuthDTO): Promise<User> {
+    const user = {
+      name: dto.name,
+      email: dto.email,
     }
     return this.prisma.user.create({ data: user })
   }
