@@ -2,12 +2,15 @@
 
 .form {
   width: 300px;
+  margin-bottom: 20px;
 
   &__heading {
     margin-bottom: 30px;
   }
 
   &__section {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 15px;
   }
 
@@ -15,4 +18,10 @@
     margin-bottom: 5px;
     @include body1;
   }
+}
+
+.oidc-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
