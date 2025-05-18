@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/public/favicon.png',
+    shortcut: '/public/favicon.png',
+    apple: '/public/favicon.png',
+  },
   title: {
     default: SITE_NAME,
     template: `%s | ${SITE_NAME}`,
