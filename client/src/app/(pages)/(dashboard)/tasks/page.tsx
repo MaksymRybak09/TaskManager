@@ -1,5 +1,5 @@
 'use client'
 
-import TasksPage from '@/pages/TasksPage'
+import TasksPage from '@/(pages)/TasksPage'
 
 export default TasksPage

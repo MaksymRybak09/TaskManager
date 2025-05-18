@@ -1,5 +1,5 @@
 'use client'
 
-import RegisterPage from '@/pages/RegisterPage'
+import RegisterPage from '@/(pages)/RegisterPage'
 
 export default RegisterPage

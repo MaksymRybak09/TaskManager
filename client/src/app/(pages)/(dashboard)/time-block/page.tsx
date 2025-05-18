@@ -1,5 +1,5 @@
 'use client'
 
-import TimeBlockPage from '@/pages/TimeBlockPage'
+import TimeBlockPage from '@/(pages)/TimeBlockPage'
 
 export default TimeBlockPage

@@ -1,5 +1,5 @@
 'use client'
 
-import TimerPage from '@/pages/TimerPage'
+import TimerPage from '@/(pages)/TimerPage'
 
 export default TimerPage
