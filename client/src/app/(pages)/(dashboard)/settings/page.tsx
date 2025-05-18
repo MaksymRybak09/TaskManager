@@ -1,10 +1,5 @@
-import SettingsPage from '@/pages/SettingsPage'
-import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants'
-import { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Settings',
-  ...NO_INDEX_PAGE,
-}
+import SettingsPage from '@/pages/SettingsPage'
 
 export default SettingsPage

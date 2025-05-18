@@ -1,10 +1,5 @@
-import LogInPage from '@/pages/LogInPage'
-import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants'
-import { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Auth',
-  ...NO_INDEX_PAGE,
-}
+import LogInPage from '@/pages/LogInPage'
 
 export default LogInPage
