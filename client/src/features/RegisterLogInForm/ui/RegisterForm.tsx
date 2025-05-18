@@ -1,14 +1,14 @@
 'use client'
 
+import { OidcSignInButton } from '@/features/OidcSignInButton'
 import Button from '@/shared/components/button/Button'
 import Field from '@/shared/components/field/Field'
 import Heading from '@/shared/components/heading/Heading'
-import Linking from '@/shared/components/link/Linking'
+import Linking from '@/shared/components/linking/Linking'
 import { authService } from '@/shared/services/auth/auth.service'
 import { registerFormSchema } from '../config/forms.scema'
 import { useRegisterLogInForm } from '../hooks/use-register-login-form'
 import styles from './register-login-form.module.scss'
-import { OidcSignInButton } from '@/features/OidcSignInButton'
 
 function RegisterForm() {
   const { register, errors, onSubmit } = useRegisterLogInForm(
