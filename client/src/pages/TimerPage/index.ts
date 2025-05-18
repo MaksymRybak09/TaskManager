@@ -1,1 +1,1 @@
-export { default as TimerPage } from './ui/TimerPage'
+export { default } from './ui/TimerPage'

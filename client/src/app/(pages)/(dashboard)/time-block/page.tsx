@@ -1,4 +1,4 @@
-import { TimeBlockPage } from '@/pages/TimeBlockPage'
+import TimeBlockPage from '@/pages/TimeBlockPage'
 import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants'
 import { Metadata } from 'next'
 

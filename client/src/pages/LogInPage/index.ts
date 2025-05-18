@@ -1,1 +1,1 @@
-export { default as LogInPage } from './ui/LogInPage'
+export { default } from './ui/LogInPage'

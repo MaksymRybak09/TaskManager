@@ -1,1 +1,1 @@
-export { default as TimeBlockPage } from './ui/TimeBlockPage'
+export { default } from './ui/TimeBlockPage'
