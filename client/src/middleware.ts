@@ -3,7 +3,9 @@ import { Tokens } from './shared/constants/tokens.constants'
 import { DASHBOARD_PAGES } from './shared/config/pages-url.config'
 
 export async function middleware(request: NextRequest) {
-  const refreshToken = request.cookies.get(Tokens.REFRESH_TOKEN)?.value
+  const refreshToken =
+    request.cookies.get(Tokens.REFRESH_TOKEN)?.value ??
+    request.cookies.get(Tokens.ACCESS_TOKEN)?.value
   const pathname = request.nextUrl.pathname
 
   const isAuthPage =
