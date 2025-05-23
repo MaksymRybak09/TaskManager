@@ -3,7 +3,6 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { User } from '@prisma/client'
 import { verify } from 'argon2'
@@ -17,7 +16,6 @@ export class AuthService {
   constructor(
     private readonly JWTservice: JwtService,
     private readonly userService: UserService,
-    private readonly configService: ConfigService,
   ) {}
 
   private issueTokens(userID: string) {
