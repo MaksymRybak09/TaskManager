@@ -1,4 +1,4 @@
-name: Lint Client and Server
+name: Lint, Build Client and Server
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint-client:
-    name: Lint Client
+    name: Lint and Build Client
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,8 +29,11 @@ jobs:
       - name: Run linter
         run: npm run lint
 
+      - name: Build client
+        run: npm run build
+
   lint-server:
-    name: Lint Server
+    name: Lint and Build Server
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -53,3 +56,6 @@ jobs:
 
       - name: Run linter
         run: npm run lint
+
+      - name: Build server
+        run: npm run build
