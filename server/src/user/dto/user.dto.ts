@@ -1,6 +1,6 @@
-import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator'
-import { PomodoroSettingsDTO } from './pomodoro-settings.dto'
 import { ApiProperty } from '@nestjs/swagger'
+import { IsOptional, IsString, Matches, MinLength } from 'class-validator'
+import { PomodoroSettingsDTO } from './pomodoro-settings.dto'
 
 export class UserDTO extends PomodoroSettingsDTO {
   @ApiProperty({ example: 'Maksym Rybak' })
@@ -11,7 +11,7 @@ export class UserDTO extends PomodoroSettingsDTO {
   @ApiProperty({ example: 'maksymrybak@gmail.com' })
   @IsOptional()
   @IsString()
-  @IsEmail()
+  @Matches(/^[^\s@]+@[^\s@]+$/)
   email?: string
 
   @ApiProperty({ example: '123456' })

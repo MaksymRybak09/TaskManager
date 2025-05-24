@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator'
+import { IsOptional, IsString, Matches, MinLength } from 'class-validator'
 
 export class AuthDTO {
   @ApiProperty({ example: 'maksym' })
@@ -9,7 +9,7 @@ export class AuthDTO {
 
   @ApiProperty({ example: 'maksymrybak@gmail.com' })
   @IsString()
-  @IsEmail()
+  @Matches(/^[^\s@]+@[^\s@]+$/)
   email: string
 
   @ApiProperty({ example: '123456' })
@@ -28,6 +28,6 @@ export class OidcAuthDTO {
 
   @ApiProperty({ example: 'maksymrybak@gmail.com' })
   @IsString()
-  @IsEmail()
+  @Matches(/^[^\s@]+@[^\s@]+$/)
   email: string
 }
