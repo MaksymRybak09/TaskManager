@@ -36,6 +36,9 @@ jobs:
       run:
         working-directory: server
 
+    env:
+      SKIP_DB_PUSH: true
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
