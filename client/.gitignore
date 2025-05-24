@@ -5,4 +5,7 @@ node_modules
 .vscode
 
 .env
+.env.*
 next-env.d.ts
+
+.env.sentry-build-plugin
