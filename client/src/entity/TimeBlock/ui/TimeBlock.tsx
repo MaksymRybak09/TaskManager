@@ -35,7 +35,7 @@ function TimeBlock(props: TimeBlockProps) {
           </div>
           <div className={timeBlockStyles['name']}>{props.item.name}</div>
           <div className={timeBlockStyles['duration']}>
-            {props.item.duration}
+            {props.item.duration} min.
           </div>
         </div>
         <div className={timeBlockStyles['actions']}>{props.actions}</div>
