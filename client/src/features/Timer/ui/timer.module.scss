@@ -1,4 +1,4 @@
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .timer,
 .timer-mb {
@@ -8,12 +8,12 @@
 
   .time {
     display: inline-block;
-    @include headline2;
+    @include fonts.headline2;
   }
 
   .badge {
     display: inline-block;
-    @include body2;
+    @include fonts.body2;
   }
 
   &__buttons {
@@ -31,7 +31,7 @@
 }
 
 .refresh-timer-block {
-  @include body1;
+  @include fonts.body1;
 }
 
 .refresh-timer-title {

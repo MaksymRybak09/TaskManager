@@ -1,4 +1,4 @@
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .form {
   width: 300px;
@@ -16,7 +16,7 @@
 
   &__paragraph {
     margin-bottom: 5px;
-    @include body1;
+    @include fonts.body1;
   }
 }
 

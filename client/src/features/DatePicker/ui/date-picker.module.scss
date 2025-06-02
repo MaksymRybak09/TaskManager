@@ -1,7 +1,7 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/fonts.variables.scss';
-@import '@/shared/styles/borders.variables.scss';
-@import '@/shared/styles/radiuses.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/fonts.variables.scss' as fonts;
+@use '@/shared/styles/borders.variables.scss' as borders;
+@use '@/shared/styles/radiuses.variables.scss' as radiuses;
 
 .date-picker {
   display: inline-block;
@@ -15,25 +15,25 @@
     z-index: 10;
     padding: 2px;
     margin-top: 0.5rem;
-    background-color: $background;
-    @include border;
-    border-radius: $radius;
-    box-shadow: 0 4px 6px $light-grey300;
+    background-color: colors.$background;
+    @include borders.border;
+    border-radius: radiuses.$radius;
+    box-shadow: 0 4px 6px colors.$light-grey300;
 
     span {
       display: inline-block;
       padding: 6px 8px;
-      @include body1;
+      @include fonts.body1;
     }
 
     button {
       padding: 6px;
       font-size: 1rem;
-      background-color: $background;
+      background-color: colors.$background;
       border: none;
 
       &:hover {
-        background-color: $background-darken;
+        background-color: colors.$background-darken;
       }
     }
   }

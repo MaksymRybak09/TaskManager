@@ -1,5 +1,4 @@
-@import '@/shared/styles/borders.variables.scss';
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .table {
   display: flex;
@@ -9,7 +8,7 @@
 
   &__title {
     display: inline-block;
-    @include headline6;
+    @include fonts.headline6;
   }
 
   &__button {

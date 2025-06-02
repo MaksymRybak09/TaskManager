@@ -1,4 +1,4 @@
-@import '@/shared/styles/borders.variables.scss';
+@use '@/shared/styles/borders.variables.scss' as borders;
 
 .row,
 .row-mb {
@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   height: 50px;
-  @include border-bottom;
+  @include borders.border-bottom;
 
   &--task-input {
     flex-grow: 6;

@@ -1,8 +1,8 @@
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .time-block-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  @include body1;
+  @include fonts.body1;
 }
