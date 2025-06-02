@@ -1,22 +1,22 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/fonts.variables.scss';
-@import '@/shared/styles/radiuses.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/fonts.variables.scss' as fonts;
+@use '@/shared/styles/radiuses.variables.scss' as radiuses;
 
 .badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.3rem 0.7rem;
-  @include button();
-  background-color: $primary;
-  color: $light-grey50;
+  @include fonts.button;
+  background-color: colors.$primary;
+  color: colors.$light-grey50;
   border: none;
-  border-radius: $radius;
+  border-radius: radiuses.$radius;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background-color: $primary-lighten;
+    background-color: colors.$primary-lighten;
   }
 
   &:active {

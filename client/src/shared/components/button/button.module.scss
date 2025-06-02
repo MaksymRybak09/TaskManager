@@ -1,6 +1,6 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/fonts.variables.scss';
-@import '@/shared/styles/borders.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/fonts.variables.scss' as fonts;
+@use '@/shared/styles/borders.variables.scss' as borders;
 
 .button {
   display: flex;
@@ -8,8 +8,8 @@
   align-items: center;
   gap: 6px;
   padding: 10px 20px;
-  @include button();
-  color: $primary;
+  @include fonts.button;
+  color: colors.$primary;
   background: none;
   border: none;
   cursor: pointer;
@@ -17,35 +17,35 @@
 
 .transparent-button {
   &:hover {
-    background-color: $pine-greem50;
+    background-color: colors.$pine-greem50;
   }
 
   .icon {
     width: 18px;
     height: 18px;
-    color: $primary;
+    color: colors.$primary;
   }
 }
 
 .border-button {
-  @include border();
+  @include borders.border;
 
   &:hover {
-    background-color: $pine-greem50;
+    background-color: colors.$pine-greem50;
   }
 }
 
 .filled-button {
-  background-color: $primary;
-  color: $light-grey50;
+  background-color: colors.$primary;
+  color: colors.$light-grey50;
 
   &:hover {
-    background-color: $primary-lighten;
+    background-color: colors.$primary-lighten;
   }
 
   .icon {
     width: 18px;
     height: 18px;
-    color: $light-grey50;
+    color: colors.$light-grey50;
   }
 }

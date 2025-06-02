@@ -1,25 +1,25 @@
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .headline1 {
-  @include headline1();
+  @include fonts.headline1;
 }
 
 .headline2 {
-  @include headline2();
+  @include fonts.headline2;
 }
 
 .headline3 {
-  @include headline3();
+  @include fonts.headline3;
 }
 
 .headline4 {
-  @include headline4();
+  @include fonts.headline4;
 }
 
 .headline5 {
-  @include headline5();
+  @include fonts.headline5;
 }
 
 .headline6 {
-  @include headline6();
+  @include fonts.headline6;
 }

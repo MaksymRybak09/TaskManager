@@ -1,6 +1,6 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/borders.variables.scss';
-@import '@/shared/styles/radiuses.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/borders.variables.scss' as borders;
+@use '@/shared/styles/radiuses.variables.scss' as radiuses;
 
 .parent {
   position: relative;
@@ -16,16 +16,16 @@
   left: 0;
   z-index: 10;
   padding: 8px;
-  background-color: $light-grey50;
-  @include border();
-  border-radius: $radius;
+  background-color: colors.$light-grey50;
+  @include borders.border;
+  border-radius: radiuses.$radius;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .child button {
-  color: $font-color;
+  color: colors.$font-color;
 
   &:hover {
-    background-color: $light-grey100;
+    background-color: colors.$light-grey100;
   }
 }

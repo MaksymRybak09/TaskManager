@@ -1,6 +1,6 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/fonts.variables.scss';
-@import '@/shared/styles/borders.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/fonts.variables.scss' as fonts;
+@use '@/shared/styles/borders.variables.scss' as borders;
 
 .formField {
   display: flex;
@@ -10,27 +10,27 @@
 
   .label {
     margin-bottom: 2px;
-    @include body2();
+    @include fonts.body2;
   }
 
   .input {
     padding: 10px;
-    @include body1();
-    @include border();
+    @include fonts.body1;
+    @include borders.border;
 
     &:focus {
       outline: none;
-      @include border-focus();
+      @include borders.border-focus;
     }
 
     &::placeholder {
-      color: $light-grey400;
+      color: colors.$light-grey400;
     }
   }
 
   .error {
     margin: 2px 0;
-    @include body2();
-    color: $error;
+    @include fonts.body2;
+    color: colors.$error;
   }
 }

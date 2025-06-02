@@ -1,18 +1,18 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/borders.variables.scss';
-@import '@/shared/styles/radiuses.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/borders.variables.scss' as borders;
+@use '@/shared/styles/radiuses.variables.scss' as radiuses;
 
 .checkbox {
   appearance: none;
   padding: 9px 10px;
-  @include border();
-  border-radius: $radius;
+  @include borders.border;
+  border-radius: radiuses.$radius;
   cursor: pointer;
   position: relative;
 
   &:checked {
-    background-color: $primary;
-    border-color: $primary;
+    background-color: colors.$primary;
+    border-color: colors.$primary;
   }
 
   &:checked::after {

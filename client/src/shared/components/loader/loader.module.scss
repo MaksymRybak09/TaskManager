@@ -1,5 +1,5 @@
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .loader {
-  @include body1;
+  @include fonts.body1;
 }
