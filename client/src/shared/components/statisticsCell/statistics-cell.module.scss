@@ -1,5 +1,5 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .cell {
   display: flex;
@@ -7,13 +7,13 @@
   flex-grow: 1;
   gap: 6px;
   padding: 8px 12px;
-  background-color: $light-grey100;
+  background-color: colors.$light-grey100;
 }
 
 .cell__title {
-  @include body1;
+  @include fonts.body1;
 }
 
 .cell__value {
-  @include headline4;
+  @include fonts.headline4;
 }
