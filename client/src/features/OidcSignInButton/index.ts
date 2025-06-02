@@ -1,1 +1,0 @@
-export {default as OidcSignInButton} from './ui/OidcSignInButton'

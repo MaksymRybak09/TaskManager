@@ -4,7 +4,6 @@ import Button from '@/shared/components/button/Button'
 import { useBreakPoints } from '@/shared/hooks/general/use-break-points'
 import { useLogOut } from '@/shared/hooks/users/use-log-out'
 import { LogOut } from 'lucide-react'
-// import { signOut } from 'next-auth/react'
 
 function LogOutButton() {
   const { mutate } = useLogOut()
@@ -14,10 +13,7 @@ function LogOutButton() {
     <Button
       icon={LogOut}
       variant={isTablet ? 'border' : 'filled'}
-      onClick={async () => {
-        // await signOut({ callbackUrl: '/log-in' })
-        await mutate()
-      }}
+      onClick={async () => await mutate()}
     >
       {isTablet ? undefined : 'Log-out'}
     </Button>

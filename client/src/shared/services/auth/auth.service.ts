@@ -1,9 +1,5 @@
 import { baseAxios } from '../../api/interseptors'
-import type {
-  IAuthForm,
-  IAuthResponse,
-  IOidcAuthForm,
-} from '../../types/auth.types'
+import type { IAuthForm, IAuthResponse } from '../../types/auth.types'
 import {
   removeTokenFromStorage,
   saveTokenToStorage,
@@ -22,16 +18,6 @@ class AuthService {
 
   async logIn(data: IAuthForm) {
     const response = await baseAxios.post<IAuthResponse>(`/auth/log-in`, data)
-
-    if (response.data.accessToken) {
-      saveTokenToStorage(response.data.accessToken)
-    }
-
-    return response
-  }
-
-  async signIn(data: IOidcAuthForm) {
-    const response = await baseAxios.post<IAuthResponse>(`/auth/sign-in`, data)
 
     if (response.data.accessToken) {
       saveTokenToStorage(response.data.accessToken)

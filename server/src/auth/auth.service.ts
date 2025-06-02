@@ -8,7 +8,7 @@ import { User } from '@prisma/client'
 import { verify } from 'argon2'
 import { Response } from 'express'
 import { UserService } from '../user/user.service'
-import { AuthDTO, OidcAuthDTO } from './dto/auth.dto'
+import { AuthDTO } from './dto/auth.dto'
 import { AuthResponseDTO } from './dto/auth.response.dto'
 
 @Injectable()
@@ -100,19 +100,5 @@ export class AuthService {
       secure: true,
       sameSite: 'none',
     })
-  }
-
-  async validateOidcLogIn(dto: OidcAuthDTO): Promise<AuthResponseDTO> {
-    let user = await this.userService.getByEmail(dto.email)
-    if (!user) {
-      user = await this.userService.createUserWithoutPassword(dto)
-    }
-
-    const tokens = this.issueTokens(user.id)
-
-    return {
-      user,
-      ...tokens,
-    }
   }
 }
