@@ -1,13 +1,13 @@
-@import '@/shared/styles/colors.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  scrollbar-color: $primary $background;
+  scrollbar-color: colors.$primary colors.$background;
   scrollbar-width: thin;
 }
 
 body {
-  background-color: $background;
+  background-color: colors.$background;
 }
