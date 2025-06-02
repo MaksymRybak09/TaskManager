@@ -1,6 +1,6 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/fonts.variables.scss';
-@import '@/shared/styles/radiuses.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/fonts.variables.scss' as fonts;
+@use '@/shared/styles/radiuses.variables.scss' as radiuses;
 
 .image {
   width: 3.5rem;
@@ -9,8 +9,8 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 4px;
-  @include headline4();
-  background-color: $pine-greem50;
-  color: $pine-greem800;
-  border-radius: $radius;
+  @include fonts.headline4;
+  background-color: colors.$pine-greem50;
+  color: colors.$pine-greem800;
+  border-radius: radiuses.$radius;
 }
