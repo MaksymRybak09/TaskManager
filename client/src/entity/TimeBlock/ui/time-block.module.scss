@@ -1,4 +1,4 @@
-@import '@/shared/styles/fonts.variables.scss';
+@use '@/shared/styles/fonts.variables.scss' as fonts;
 
 .time-block {
   display: flex;
@@ -23,7 +23,7 @@
 
 .name {
   display: block;
-  @include headline5;
+  @include fonts.headline5;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
@@ -31,7 +31,7 @@
 }
 
 .duration {
-  @include body1;
+  @include fonts.body1;
 }
 
 .actions {

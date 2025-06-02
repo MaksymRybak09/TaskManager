@@ -1,11 +1,11 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/radiuses.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/radiuses.variables.scss' as radiuses;
 
 .menu {
   display: flex;
   justify-content: space-evenly;
   gap: 3px;
   padding: 5px;
-  background-color: $light-grey100;
-  border-radius: $radius;
+  background-color: colors.$light-grey100;
+  border-radius: radiuses.$radius;
 }

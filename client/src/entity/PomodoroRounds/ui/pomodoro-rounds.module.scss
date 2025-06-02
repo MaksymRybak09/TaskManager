@@ -1,5 +1,5 @@
-@import '@/shared/styles/colors.variables.scss';
-@import '@/shared/styles/borders.variables.scss';
+@use '@/shared/styles/colors.variables.scss' as colors;
+@use '@/shared/styles/borders.variables.scss' as borders;
 
 .pomodoro,
 .pomodoro-mb {
@@ -16,13 +16,13 @@
 .round {
   width: 25px;
   height: 25px;
-  @include border;
+  @include borders.border;
 
   &__completed {
     width: 25px;
     height: 25px;
-    background-color: $primary;
-    border: 0.5px solid $primary;
+    background-color: colors.$primary;
+    border: 0.5px solid colors.$primary;
   }
 }
 
@@ -36,8 +36,8 @@
     &__completed {
       width: 20px;
       height: 20px;
-      background-color: $primary;
-      border: 0.5px solid $primary;
+      background-color: colors.$primary;
+      border: 0.5px solid colors.$primary;
     }
   }
 }
